@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lakshmi & Abhilash — Wedding Invitation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* =============================================
+     CSS CUSTOM PROPERTIES — ROYAL PALETTE
+  ============================================= */
+  :root {
+    --ivory:        #FFFDF5;
+    --ivory-dark:   #F5F0E0;
+    --ivory-deep:   #EDE5CC;
+    --gold:         #AF9500;
+    --gold-light:   #D4B800;
+    --gold-pale:    #E8D88A;
+    --gold-sheen:   #C9A84C;
+    --charcoal:     #2C2416;
+    --charcoal-mid: #4A3F2F;
+    --charcoal-soft:#6B5D4A;
+    --cream-text:   #7A6A50;
+    --red-accent:   #8B1A2A;
+  }
+
+  /* =============================================
+     RESET & BASE
+  ============================================= */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+  }
+
+  body {
+    background-color: var(--ivory);
+    color: var(--charcoal);
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* =============================================
+     PAPER TEXTURE OVERLAY (CSS noise)
+  ============================================= */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+
+  /* =============================================
+     SECTION SPACING
+  ============================================= */
+  section {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* =============================================
+     ORNAMENT SVGs
+  ============================================= */
+  .ornament-divider {
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    overflow: visible;
+  }
+
+  .ornament-corner {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    opacity: 0.35;
+  }
+  .ornament-corner.tl { top: 0; left: 0; }
+  .ornament-corner.tr { top: 0; right: 0; transform: scaleX(-1); }
+  .ornament-corner.bl { bottom: 0; left: 0; transform: scaleY(-1); }
+  .ornament-corner.br { bottom: 0; right: 0; transform: scale(-1); }
+
+  /* =============================================
+     LOADING SCREEN
+  ============================================= */
+  #loading-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: var(--charcoal);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .loading-mandala {
+    width: 80px;
+    height: 80px;
+    animation: spin 3s linear infinite;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  .loading-text {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    color: var(--gold-pale);
+    text-transform: uppercase;
+  }
+
+  /* =============================================
+     SECTION 1 — HERO
+  ============================================= */
+  #hero {
+    min-height: 100svh;
+    background: var(--ivory);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 24px;
+    position: relative;
+  }
+
+  #hero .bg-mandala {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(700px, 120vw);
+    height: min(700px, 120vw);
+    opacity: 0.07;
+    pointer-events: none;
+    z-index: 0;
+    animation: pulse-slow 8s ease-in-out infinite;
+  }
+
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 0.07; transform: translate(-50%,-50%) scale(1); }
+    50%       { opacity: 0.1;  transform: translate(-50%,-50%) scale(1.04); }
+  }
+
+  .hero-ganesh {
+    width: 72px;
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+  }
+
+  .hero-hosts {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    font-weight: 400;
+    color: var(--charcoal-soft);
+    letter-spacing: 0.05em;
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    max-width: 540px;
+  }
+
+  .hero-invite-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: var(--cream-text);
+    line-height: 1.9;
+    margin: 24px 0;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    max-width: 600px;
+  }
+
+  .hero-bride-name {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(3.5rem, 12vw, 7rem);
+    color: var(--charcoal);
+    line-height: 1;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    margin-bottom: 4px;
+  }
+
+  .hero-with {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 3vw, 1.4rem);
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    margin: 12px 0;
+  }
+
+  .hero-groom-name {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(3.5rem, 12vw, 7rem);
+    color: var(--charcoal);
+    line-height: 1;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    margin-bottom: 36px;
+  }
+
+  .hero-date-badge {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1.5px solid var(--gold);
+    padding: 20px 40px;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+  }
+
+  .hero-date-badge::before,
+  .hero-date-badge::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-color: var(--gold);
+    border-style: solid;
+  }
+  .hero-date-badge::before { top: -4px; left: -4px; border-width: 2px 0 0 2px; }
+  .hero-date-badge::after  { bottom: -4px; right: -4px; border-width: 0 2px 2px 0; }
+
+  .hero-date-badge .day {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .hero-date-badge .date-num {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 7vw, 4rem);
+    font-weight: 500;
+    line-height: 1;
+    color: var(--charcoal);
+  }
+  .hero-date-badge .month-year {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    color: var(--charcoal-mid);
+    margin-top: 4px;
+  }
+
+  .scroll-cue {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    z-index: 2;
+  }
+  .scroll-cue span {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.4em;
+    color: var(--cream-text);
+    text-transform: uppercase;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scroll-pulse 2s ease-in-out infinite;
+  }
+  @keyframes scroll-pulse {
+    0%,100% { transform: scaleY(1); opacity: 1; }
+    50%      { transform: scaleY(0.6); opacity: 0.4; }
+  }
+
+  /* =============================================
+     SECTION 2 — PARENTS / BLESSINGS
+  ============================================= */
+  #blessings {
+    padding: 100px 24px;
+    background: linear-gradient(180deg, var(--ivory) 0%, var(--ivory-dark) 100%);
+    text-align: center;
+  }
+
+  .section-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.5em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  .bless-family-block {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .family-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 3vw, 1.3rem);
+    color: var(--cream-text);
+    margin-bottom: 8px;
+  }
+
+  .family-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.2rem, 4vw, 1.7rem);
+    font-weight: 500;
+    color: var(--charcoal);
+    margin-bottom: 4px;
+  }
+
+  .family-place {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+    color: var(--charcoal-soft);
+    font-style: italic;
+  }
+
+  .blessings-connector {
+    margin: 40px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    max-width: 400px;
+  }
+  .blessings-connector .line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-pale));
+  }
+  .blessings-connector .line.r {
+    background: linear-gradient(to left, transparent, var(--gold-pale));
+  }
+  .blessings-connector .diamond {
+    width: 8px;
+    height: 8px;
+    background: var(--gold);
+    transform: rotate(45deg);
+  }
+
+  /* =============================================
+     SECTION 3 — THE COUPLE REVEAL
+  ============================================= */
+  #couple {
+    padding: 120px 24px;
+    background: var(--ivory-dark);
+    text-align: center;
+    position: relative;
+  }
+
+  .couple-section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.5em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 60px;
+  }
+
+  .couple-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .couple-gallery {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 60px;
+    }
+  }
+
+  .person-card {
+    flex: 1;
+    text-align: center;
+  }
+
+  /* MASKING REVEAL FRAME */
+  .photo-mask-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto 28px;
+  }
+
+  .photo-frame-border {
+    position: absolute;
+    inset: -12px;
+    border: 1.5px solid var(--gold);
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0;
+    transform: scale(0.92);
+  }
+
+  .photo-frame-corner {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    z-index: 3;
+  }
+  .photo-frame-corner svg { width: 100%; height: 100%; }
+  .photo-frame-corner.tl { top: -18px; left: -18px; }
+  .photo-frame-corner.tr { top: -18px; right: -18px; transform: scaleX(-1); }
+  .photo-frame-corner.bl { bottom: -18px; left: -18px; transform: scaleY(-1); }
+  .photo-frame-corner.br { bottom: -18px; right: -18px; transform: scale(-1); }
+
+  .photo-clip {
+    overflow: hidden;
+    /* aspect-ratio ensures shape even before image loads */
+    aspect-ratio: 3/4;
+    clip-path: inset(50% 50% 50% 50%); /* starts fully clipped */
+    position: relative;
+    background: var(--ivory-deep);
+  }
+
+  .photo-clip img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    transform: scale(1.1);
+    transition: transform 0.6s ease;
+  }
+
+  /* =============================================
+     SWAP IMAGES HERE:
+     Replace the src values below with actual photo URLs.
+     groom.jpg → Abhilash Vijayan's photo
+     bride.jpg → Lakshmi Das's photo
+  ============================================= */
+
+  .person-name-script {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
+    color: var(--charcoal);
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+
+  .person-role {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .person-parents {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+    color: var(--charcoal-soft);
+    line-height: 1.7;
+  }
+
+  .couple-ampersand {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(4rem, 15vw, 8rem);
+    color: var(--gold);
+    line-height: 1;
+    align-self: center;
+    opacity: 0;
+  }
+
+  @media (max-width: 767px) {
+    .couple-ampersand { display: none; }
+  }
+
+  /* =============================================
+     SECTION 4 — STORY / NARRATIVE
+  ============================================= */
+  #story {
+    padding: 140px 24px;
+    background: var(--charcoal);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #story .story-bg-ornament {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: min(900px, 150vw);
+    opacity: 0.04;
+    pointer-events: none;
+  }
+
+  .story-verse {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 60px 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .story-line {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.3rem, 4.5vw, 2rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--ivory);
+    line-height: 1.7;
+    opacity: 0;
+    transform: translateY(30px);
+    display: block;
+    margin: 16px 0;
+  }
+
+  .story-line.gold {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    color: var(--gold-pale);
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  /* =============================================
+     SECTION 5 — DETAILS
+  ============================================= */
+  #details {
+    padding: 120px 24px;
+    background: var(--ivory);
+    text-align: center;
+    position: relative;
+  }
+
+  .details-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .details-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-style: italic;
+    color: var(--charcoal);
+    margin-bottom: 60px;
+    opacity: 0;
+  }
+
+  .detail-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+    margin-bottom: 60px;
+  }
+
+  @media (min-width: 600px) {
+    .detail-row { grid-template-columns: 1fr 1px 1fr; }
+  }
+
+  .detail-item {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .detail-icon {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 16px;
+  }
+
+  .detail-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.5em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .detail-main {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.3rem, 4vw, 1.8rem);
+    font-style: italic;
+    color: var(--charcoal);
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+
+  .detail-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, 3vw, 1.15rem);
+    color: var(--charcoal-soft);
+    font-style: italic;
+  }
+
+  .detail-divider {
+    width: 1px;
+    background: var(--gold-pale);
+    display: none;
+  }
+  @media (min-width: 600px) {
+    .detail-divider { display: block; }
+  }
+
+  .muhurtham-block {
+    border: 1px solid var(--gold-pale);
+    padding: 32px;
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    margin-bottom: 48px;
+    display: inline-block;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .muhurtham-block::before {
+    content: 'Muhurtham';
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--ivory);
+    padding: 0 16px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .muhurtham-time {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2rem, 7vw, 3rem);
+    color: var(--charcoal);
+  }
+
+  .muhurtham-detail {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 3vw, 1.1rem);
+    color: var(--charcoal-soft);
+    margin-top: 6px;
+  }
+
+  /* Maps CTA */
+  .maps-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 4px;
+    margin-top: 16px;
+    transition: color 0.3s, border-color 0.3s;
+    opacity: 0;
+  }
+  .maps-link:hover { color: var(--gold); }
+  .maps-link svg { width: 14px; height: 14px; }
+
+  /* Sharing contact */
+  .sharing-block {
+    margin-top: 64px;
+    padding-top: 48px;
+    border-top: 1px solid var(--ivory-deep);
+    opacity: 0;
+  }
+
+  .sharing-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    color: var(--cream-text);
+    margin-bottom: 12px;
+  }
+
+  .sharing-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+    color: var(--charcoal);
+    margin-bottom: 8px;
+  }
+
+  .sharing-phones {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, 3vw, 1.15rem);
+    color: var(--charcoal-mid);
+    letter-spacing: 0.05em;
+  }
+
+  .sharing-phones a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dotted var(--gold);
+  }
+
+  /* =============================================
+     SECTION 6 — RSVP / CLOSE
+  ============================================= */
+  #rsvp {
+    padding: 140px 24px;
+    background: var(--charcoal);
+    text-align: center;
+    position: relative;
+  }
+
+  #rsvp .rsvp-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, #3D3020 0%, var(--charcoal) 70%);
+  }
+
+  .rsvp-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .rsvp-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(3rem, 10vw, 5.5rem);
+    color: var(--ivory);
+    line-height: 1;
+    margin-bottom: 24px;
+    opacity: 0;
+  }
+
+  .rsvp-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 3vw, 1.3rem);
+    color: var(--gold-pale);
+    line-height: 1.8;
+    margin-bottom: 48px;
+    opacity: 0;
+  }
+
+  .rsvp-blessing {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+    font-style: italic;
+    color: rgba(255,253,245,0.5);
+    margin-top: 48px;
+    letter-spacing: 0.05em;
+    opacity: 0;
+  }
+
+  /* WhatsApp CTA button */
+  .whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: transparent;
+    border: 1.5px solid var(--gold-sheen);
+    color: var(--ivory);
+    padding: 16px 40px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.4s;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .whatsapp-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gold);
+    transform: translateX(-101%);
+    transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+    z-index: 0;
+  }
+
+  .whatsapp-btn:hover::before { transform: translateX(0); }
+  .whatsapp-btn:hover { color: var(--charcoal); }
+  .whatsapp-btn span, .whatsapp-btn svg { position: relative; z-index: 1; }
+  .whatsapp-btn svg { width: 18px; height: 18px; }
+
+  /* =============================================
+     FOOTER
+  ============================================= */
+  footer {
+    background: var(--charcoal);
+    padding: 32px 24px;
+    text-align: center;
+    border-top: 1px solid rgba(175,149,0,0.2);
+  }
+  footer p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem;
+    color: rgba(255,253,245,0.3);
+    font-style: italic;
+    letter-spacing: 0.05em;
+  }
+
+  /* =============================================
+     RESPONSIVE HELPERS
+  ============================================= */
+  .reveal-item { will-change: transform, opacity; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .photo-clip { clip-path: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- =============================================
+     LOADING SCREEN
+============================================= -->
+<div id="loading-screen">
+  <!-- Mandala spinner -->
+  <svg class="loading-mandala" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="50" cy="50" r="45" stroke="#AF9500" stroke-width="0.8" stroke-dasharray="4 6"/>
+    <circle cx="50" cy="50" r="35" stroke="#AF9500" stroke-width="0.5" stroke-dasharray="2 4" opacity="0.6"/>
+    <path d="M50 5 L52 20 L50 18 L48 20 Z" fill="#AF9500"/>
+    <path d="M95 50 L80 52 L82 50 L80 48 Z" fill="#AF9500"/>
+    <path d="M50 95 L48 80 L50 82 L52 80 Z" fill="#AF9500"/>
+    <path d="M5 50 L20 48 L18 50 L20 52 Z" fill="#AF9500"/>
+    <circle cx="50" cy="50" r="6" stroke="#AF9500" stroke-width="1" fill="none"/>
+    <circle cx="50" cy="50" r="2" fill="#AF9500"/>
+  </svg>
+  <p class="loading-text">Unfolding your invitation…</p>
+</div>
+
+<!-- =============================================
+     SECTION 1 — HERO
+============================================= -->
+<section id="hero">
+
+  <!-- Background mandala watermark -->
+  <svg class="bg-mandala" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="#AF9500" stroke-width="0.6">
+      <circle cx="250" cy="250" r="240"/>
+      <circle cx="250" cy="250" r="200"/>
+      <circle cx="250" cy="250" r="160"/>
+      <circle cx="250" cy="250" r="120"/>
+      <circle cx="250" cy="250" r="80"/>
+      <!-- petals -->
+      <ellipse cx="250" cy="50"  rx="18" ry="38" transform="rotate(0   250 250)"/>
+      <ellipse cx="250" cy="50"  rx="18" ry="38" transform="rotate(30  250 250)"/>
+      <ellipse cx="250" cy="50"  rx="18" ry="38" transform="rotate(60  250 250)"/>
+      <ellipse cx="250" cy="50"  rx="18" ry="38" transform="rotate(90  250 250)"/>
+      <ellipse cx="250" cy="50"  rx="18" ry="38" transform="rotate(120 250 250)"/>
+      <ellipse cx="250" cy="50"  rx="18" ry="38" transform="rotate(150 250 250)"/>
+      <ellipse cx="250" cy="50"  rx="18" ry="38" transform="rotate(180 250 250)"/>
+      <ellipse cx="250" cy="50"  rx="18" ry="38" transform="rotate(210 250 250)"/>
+      <ellipse cx="250" cy="50"  rx="18" ry="38" transform="rotate(240 250 250)"/>
+      <ellipse cx="250" cy="50"  rx="18" ry="38" transform="rotate(270 250 250)"/>
+      <ellipse cx="250" cy="50"  rx="18" ry="38" transform="rotate(300 250 250)"/>
+      <ellipse cx="250" cy="50"  rx="18" ry="38" transform="rotate(330 250 250)"/>
+    </g>
+  </svg>
+
+  <!-- Ganesh icon -->
+  <div class="hero-ganesh">
+    <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Simplified Ganesha silhouette -->
+      <path d="M36 8 C28 8 22 14 22 22 C18 22 14 26 14 30 C14 34 17 37 20 38 C18 42 18 50 22 54 C26 58 30 60 36 60 C42 60 46 58 50 54 C54 50 54 42 52 38 C55 37 58 34 58 30 C58 26 54 22 50 22 C50 14 44 8 36 8Z" stroke="#AF9500" stroke-width="1.2" fill="none"/>
+      <path d="M26 30 C24 28 20 28 18 30 C17 32 18 36 22 36" stroke="#AF9500" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+      <path d="M46 30 C48 28 52 28 54 30 C55 32 54 36 50 36" stroke="#AF9500" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+      <circle cx="30" cy="34" r="2.5" stroke="#AF9500" stroke-width="1" fill="none"/>
+      <circle cx="42" cy="34" r="2.5" stroke="#AF9500" stroke-width="1" fill="none"/>
+      <path d="M32 42 Q36 46 40 42" stroke="#AF9500" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+      <path d="M33 22 Q36 18 39 22" stroke="#AF9500" stroke-width="1" fill="none"/>
+      <line x1="36" y1="8" x2="36" y2="5" stroke="#AF9500" stroke-width="1"/>
+      <line x1="36" y1="5" x2="32" y2="2" stroke="#AF9500" stroke-width="1"/>
+      <path d="M28 52 Q24 58 22 62" stroke="#AF9500" stroke-width="1" fill="none" stroke-linecap="round"/>
+      <path d="M44 52 Q48 58 50 62" stroke="#AF9500" stroke-width="1" fill="none" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <!-- Hosts -->
+  <p class="hero-hosts">
+    Mrs. Sudha Krishnadas &amp; Mr. Krishnadas A.J<br>
+    <em>Ambalaparambil House, Perumbavoor</em>
+  </p>
+
+  <!-- Invite text -->
+  <p class="hero-invite-text">
+    cordially invite your esteemed presence &amp; blessings with family<br>
+    on the auspicious occasion of the wedding of their daughter
+  </p>
+
+  <!-- Bride name -->
+  <h1 class="hero-bride-name">Lakshmi Das</h1>
+
+  <!-- With -->
+  <p class="hero-with">with</p>
+
+  <!-- Groom name -->
+  <h1 class="hero-groom-name">Abhilash Vijayan</h1>
+
+  <!-- Date Badge -->
+  <div class="hero-date-badge">
+    <span class="day">Wednesday</span>
+    <span class="date-num">13</span>
+    <span class="month-year">May · 2026</span>
+  </div>
+
+  <!-- Scroll cue -->
+  <div class="scroll-cue" id="scroll-cue">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+
+</section>
+
+<!-- =============================================
+     SECTION 2 — PARENTS / BLESSINGS
+============================================= -->
+<section id="blessings">
+
+  <!-- Corner ornaments -->
+  <svg class="ornament-corner tl" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M10 10 L10 60 Q10 80 30 90 L80 90" stroke="#AF9500" stroke-width="1" fill="none"/>
+    <path d="M10 10 L60 10 Q80 10 90 30 L90 80" stroke="#AF9500" stroke-width="0.5" fill="none"/>
+    <circle cx="10" cy="10" r="4" stroke="#AF9500" stroke-width="1" fill="none"/>
+    <path d="M25 25 Q40 15 55 25 Q40 35 25 25Z" stroke="#AF9500" stroke-width="0.8" fill="none"/>
+  </svg>
+  <svg class="ornament-corner tr" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M10 10 L10 60 Q10 80 30 90 L80 90" stroke="#AF9500" stroke-width="1" fill="none"/>
+    <path d="M10 10 L60 10 Q80 10 90 30 L90 80" stroke="#AF9500" stroke-width="0.5" fill="none"/>
+    <circle cx="10" cy="10" r="4" stroke="#AF9500" stroke-width="1" fill="none"/>
+    <path d="M25 25 Q40 15 55 25 Q40 35 25 25Z" stroke="#AF9500" stroke-width="0.8" fill="none"/>
+  </svg>
+  <svg class="ornament-corner bl" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M10 10 L10 60 Q10 80 30 90 L80 90" stroke="#AF9500" stroke-width="1" fill="none"/>
+    <path d="M10 10 L60 10 Q80 10 90 30 L90 80" stroke="#AF9500" stroke-width="0.5" fill="none"/>
+    <circle cx="10" cy="10" r="4" stroke="#AF9500" stroke-width="1" fill="none"/>
+  </svg>
+  <svg class="ornament-corner br" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M10 10 L10 60 Q10 80 30 90 L80 90" stroke="#AF9500" stroke-width="1" fill="none"/>
+    <path d="M10 10 L60 10 Q80 10 90 30 L90 80" stroke="#AF9500" stroke-width="0.5" fill="none"/>
+    <circle cx="10" cy="10" r="4" stroke="#AF9500" stroke-width="1" fill="none"/>
+  </svg>
+
+  <span class="section-eyebrow reveal-item">With the blessings of</span>
+
+  <!-- Bride's family -->
+  <div class="bless-family-block reveal-item" style="margin-bottom:0">
+    <p class="family-title">Bride's Parents</p>
+    <p class="family-name">Mrs. Sudha Krishnadas &amp; Mr. Krishnadas A.J</p>
+    <p class="family-place">Ambalaparambil House, Perumbavoor</p>
+  </div>
+
+  <!-- Ornament divider -->
+  <div class="blessings-connector reveal-item">
+    <div class="line"></div>
+    <!-- Mini lotus SVG -->
+    <svg width="48" height="32" viewBox="0 0 48 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M24 28 C20 20 12 18 8 20 C12 14 20 12 24 4 C28 12 36 14 40 20 C36 18 28 20 24 28Z" stroke="#AF9500" stroke-width="1" fill="none"/>
+      <path d="M24 28 C22 22 16 20 12 22" stroke="#AF9500" stroke-width="0.7" fill="none"/>
+      <path d="M24 28 C26 22 32 20 36 22" stroke="#AF9500" stroke-width="0.7" fill="none"/>
+      <line x1="24" y1="28" x2="24" y2="32" stroke="#AF9500" stroke-width="1"/>
+    </svg>
+    <div class="line r"></div>
+  </div>
+
+  <!-- Groom's family -->
+  <div class="bless-family-block reveal-item">
+    <p class="family-title">Groom's Parents</p>
+    <p class="family-name">Mrs. Ambika Vijayan &amp; Mr. Vijayan K.R</p>
+    <p class="family-place">Kanakkancheril House, Piravom</p>
+  </div>
+
+</section>
+
+<!-- =============================================
+     SECTION 3 — THE COUPLE
+============================================= -->
+<section id="couple">
+
+  <p class="couple-section-title reveal-item">The Couple</p>
+
+  <div class="couple-gallery">
+
+    <!-- ── BRIDE ── -->
+    <!-- SWAP: Replace src below with Lakshmi's actual photo URL -->
+    <div class="person-card reveal-item">
+      <div class="photo-mask-wrapper">
+        <div class="photo-clip" id="bride-clip">
+          <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=600&q=80"
+               alt="Lakshmi Das — Bride"
+               loading="lazy"
+               id="bride-img">
+          <!-- ↑ REPLACE src above with your bride.jpg URL -->
+        </div>
+        <div class="photo-frame-border" id="bride-frame"></div>
+        <div class="photo-frame-corner tl">
+          <svg viewBox="0 0 24 24"><path d="M2 2 L2 12 M2 2 L12 2" stroke="#AF9500" stroke-width="1.5" fill="none"/></svg>
+        </div>
+        <div class="photo-frame-corner tr">
+          <svg viewBox="0 0 24 24"><path d="M2 2 L2 12 M2 2 L12 2" stroke="#AF9500" stroke-width="1.5" fill="none"/></svg>
+        </div>
+        <div class="photo-frame-corner bl">
+          <svg viewBox="0 0 24 24"><path d="M2 2 L2 12 M2 2 L12 2" stroke="#AF9500" stroke-width="1.5" fill="none"/></svg>
+        </div>
+        <div class="photo-frame-corner br">
+          <svg viewBox="0 0 24 24"><path d="M2 2 L2 12 M2 2 L12 2" stroke="#AF9500" stroke-width="1.5" fill="none"/></svg>
+        </div>
+      </div>
+      <h2 class="person-name-script">Lakshmi Das</h2>
+      <p class="person-role">The Bride</p>
+      <p class="person-parents">
+        D/o. Mrs. Sudha Krishnadas &amp; Mr. Krishnadas A.J<br>
+        <em>Ambalaparambil House, Perumbavoor</em>
+      </p>
+    </div>
+
+    <!-- Ampersand between on desktop -->
+    <div class="couple-ampersand" id="couple-amp">&amp;</div>
+
+    <!-- ── GROOM ── -->
+    <!-- SWAP: Replace src below with Abhilash's actual photo URL -->
+    <div class="person-card reveal-item">
+      <div class="photo-mask-wrapper">
+        <div class="photo-clip" id="groom-clip">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80"
+               alt="Abhilash Vijayan — Groom"
+               loading="lazy"
+               id="groom-img">
+          <!-- ↑ REPLACE src above with your groom.jpg URL -->
+        </div>
+        <div class="photo-frame-border" id="groom-frame"></div>
+        <div class="photo-frame-corner tl">
+          <svg viewBox="0 0 24 24"><path d="M2 2 L2 12 M2 2 L12 2" stroke="#AF9500" stroke-width="1.5" fill="none"/></svg>
+        </div>
+        <div class="photo-frame-corner tr">
+          <svg viewBox="0 0 24 24"><path d="M2 2 L2 12 M2 2 L12 2" stroke="#AF9500" stroke-width="1.5" fill="none"/></svg>
+        </div>
+        <div class="photo-frame-corner bl">
+          <svg viewBox="0 0 24 24"><path d="M2 2 L2 12 M2 2 L12 2" stroke="#AF9500" stroke-width="1.5" fill="none"/></svg>
+        </div>
+        <div class="photo-frame-corner br">
+          <svg viewBox="0 0 24 24"><path d="M2 2 L2 12 M2 2 L12 2" stroke="#AF9500" stroke-width="1.5" fill="none"/></svg>
+        </div>
+      </div>
+      <h2 class="person-name-script">Abhilash Vijayan</h2>
+      <p class="person-role">The Groom</p>
+      <p class="person-parents">
+        S/o. Mrs. Ambika Vijayan &amp; Mr. Vijayan K.R<br>
+        <em>Kanakkancheril House, Piravom</em>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- =============================================
+     SECTION 4 — STORY / NARRATIVE (Dark)
+============================================= -->
+<section id="story">
+
+  <!-- Decorative bg -->
+  <svg class="story-bg-ornament" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="#AF9500" stroke-width="0.5">
+      <circle cx="250" cy="250" r="240"/>
+      <circle cx="250" cy="250" r="180"/>
+      <circle cx="250" cy="250" r="120"/>
+      <circle cx="250" cy="250" r="60"/>
+    </g>
+  </svg>
+
+  <div class="story-verse">
+    <span class="story-line">Two families.</span>
+    <span class="story-line">Two hearts.</span>
+    <span class="story-line gold">One beautiful beginning.</span>
+    <span class="story-line" style="margin-top:32px;">As the stars aligned on</span>
+    <span class="story-line gold">Wednesday, 13th May 2026,</span>
+    <span class="story-line">two souls are united in</span>
+    <span class="story-line">the sacred bond of marriage.</span>
+  </div>
+
+</section>
+
+<!-- =============================================
+     SECTION 5 — DETAILS
+============================================= -->
+<section id="details">
+
+  <div class="details-inner">
+
+    <h2 class="details-title">The Celebration</h2>
+
+    <!-- Date & Venue row -->
+    <div class="detail-row">
+      <div class="detail-item" id="detail-date">
+        <svg class="detail-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="8" width="32" height="28" rx="2" stroke="#AF9500" stroke-width="1.2"/>
+          <line x1="4" y1="16" x2="36" y2="16" stroke="#AF9500" stroke-width="1.2"/>
+          <line x1="13" y1="4" x2="13" y2="12" stroke="#AF9500" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="27" y1="4" x2="27" y2="12" stroke="#AF9500" stroke-width="1.5" stroke-linecap="round"/>
+          <text x="20" y="30" text-anchor="middle" font-family="Playfair Display, serif" font-size="10" fill="#AF9500">13</text>
+        </svg>
+        <p class="detail-eyebrow">Date</p>
+        <p class="detail-main">Wednesday, 13 May</p>
+        <p class="detail-sub">2026 · 1201 Medam 30</p>
+      </div>
+
+      <div class="detail-divider"></div>
+
+      <div class="detail-item" id="detail-venue">
+        <svg class="detail-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 4 C13 4 8 10 8 17 C8 26 20 38 20 38 C20 38 32 26 32 17 C32 10 27 4 20 4Z" stroke="#AF9500" stroke-width="1.2" fill="none"/>
+          <circle cx="20" cy="17" r="5" stroke="#AF9500" stroke-width="1.2" fill="none"/>
+        </svg>
+        <p class="detail-eyebrow">Venue</p>
+        <p class="detail-main">Seema Auditorium</p>
+        <p class="detail-sub">Perumbavoor, Kerala</p>
+        <!-- SWAP: Replace # with your Google Maps link for Seema Auditorium -->
+        <a href="https://www.google.com/maps/search/Seema+Auditorium+Perumbavoor" target="_blank" rel="noopener" class="maps-link" id="maps-link">
+          <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 1 C4.2 1 2 3.2 2 6 C2 9.5 7 14 7 14 C7 14 12 9.5 12 6 C12 3.2 9.8 1 7 1Z" stroke="currentColor" stroke-width="1.2" fill="none"/>
+            <circle cx="7" cy="6" r="1.8" stroke="currentColor" stroke-width="1" fill="none"/>
+          </svg>
+          <span>View on Maps</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Muhurtham block -->
+    <div class="muhurtham-block" id="muhurtham">
+      <p class="muhurtham-time">11.00 am — 11.45 am</p>
+      <p class="muhurtham-detail">Auspicious time for the ceremony</p>
+    </div>
+
+    <!-- Ornament divider -->
+    <svg class="ornament-divider reveal-item" viewBox="0 0 500 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin:16px auto 0" aria-hidden="true">
+      <line x1="0" y1="20" x2="200" y2="20" stroke="#E8D88A" stroke-width="0.8"/>
+      <path d="M220 20 C225 10 235 5 250 5 C265 5 275 10 280 20 C275 30 265 35 250 35 C235 35 225 30 220 20Z" stroke="#AF9500" stroke-width="1" fill="none"/>
+      <circle cx="250" cy="20" r="4" stroke="#AF9500" stroke-width="1" fill="none"/>
+      <circle cx="250" cy="20" r="1.5" fill="#AF9500"/>
+      <path d="M240 20 L250 12 L260 20 L250 28 Z" stroke="#AF9500" stroke-width="0.6" fill="none"/>
+      <line x1="300" y1="20" x2="500" y2="20" stroke="#E8D88A" stroke-width="0.8"/>
+    </svg>
+
+    <!-- Sharing the happiness -->
+    <div class="sharing-block" id="sharing-block">
+      <p class="sharing-title">Sharing the happiness</p>
+      <p class="sharing-name">Anand Krishnan &amp; Aathira Anand</p>
+      <p class="sharing-phones">
+        <a href="tel:9961480413">9961480413</a>
+        &nbsp;·&nbsp;
+        <a href="tel:7736186713">7736186713</a>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- =============================================
+     SECTION 6 — RSVP / CLOSE
+============================================= -->
+<section id="rsvp">
+  <div class="rsvp-bg"></div>
+
+  <!-- Corner ornaments (light) -->
+  <svg style="position:absolute;top:0;left:0;width:100px;height:100px;opacity:0.2" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+    <path d="M10 10 L10 60 Q10 80 30 90 L80 90" stroke="#E8D88A" stroke-width="1.2" fill="none"/>
+    <path d="M10 10 L60 10 Q80 10 90 30 L90 80" stroke="#E8D88A" stroke-width="0.6" fill="none"/>
+  </svg>
+  <svg style="position:absolute;top:0;right:0;width:100px;height:100px;opacity:0.2;transform:scaleX(-1)" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+    <path d="M10 10 L10 60 Q10 80 30 90 L80 90" stroke="#E8D88A" stroke-width="1.2" fill="none"/>
+    <path d="M10 10 L60 10 Q80 10 90 30 L90 80" stroke="#E8D88A" stroke-width="0.6" fill="none"/>
+  </svg>
+
+  <div class="rsvp-inner">
+    <h2 class="rsvp-title" id="rsvp-title">You're Invited</h2>
+    <p class="rsvp-subtitle" id="rsvp-subtitle">
+      Join us as we begin this sacred journey together.<br>
+      Your presence and blessings mean everything to us.
+    </p>
+
+    <!-- SWAP: Replace the href below with your WhatsApp link or Google Form URL -->
+    <!-- WhatsApp: https://wa.me/919961480413?text=I%20will%20attend%20the%20wedding -->
+    <a href="https://wa.me/919961480413?text=Congratulations!%20I%20will%20be%20attending%20the%20wedding%20of%20Lakshmi%20%26%20Abhilash%20on%2013th%20May."
+       target="_blank"
+       rel="noopener"
+       class="whatsapp-btn"
+       id="whatsapp-btn">
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+        <path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.558 4.116 1.533 5.843L.053 23.447a.5.5 0 00.613.613l5.604-1.48A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.94 9.94 0 01-5.073-1.382l-.363-.215-3.766.994.994-3.766-.215-.363A9.94 9.94 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+      </svg>
+      <span>Send Your Blessings</span>
+    </a>
+
+    <p class="rsvp-blessing" id="rsvp-blessing">
+      Presence in blessings only
+    </p>
+  </div>
+</section>
+
+<!-- =============================================
+     FOOTER
+============================================= -->
+<footer>
+  <p>Lakshmi &amp; Abhilash · 13 May 2026 · Seema Auditorium, Perumbavoor</p>
+</footer>
+
+
+<!-- =============================================
+     SCRIPTS — GSAP + ScrollTrigger
+============================================= -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<script>
+// =============================================
+// GSAP REGISTRATION
+// =============================================
+gsap.registerPlugin(ScrollTrigger);
+
+// =============================================
+// LOADING SCREEN
+// =============================================
+window.addEventListener('load', () => {
+  const tl = gsap.timeline({
+    onComplete: () => {
+      document.getElementById('loading-screen').style.display = 'none';
+      initAnimations();
+    }
+  });
+  tl.to('#loading-screen', {
+    duration: 0.8,
+    opacity: 0,
+    delay: 1.2,
+    ease: 'power2.inOut'
+  });
+});
+
+// =============================================
+// MAIN ANIMATION INIT
+// =============================================
+function initAnimations() {
+
+  // ── HERO SEQUENCE ──
+  const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+  heroTl
+    .to('.hero-ganesh',      { opacity: 1, y: 0, duration: 1, from: { y: 30 } })
+    .to('.hero-hosts',       { opacity: 1, y: 0, duration: 1, from: { y: 20 } }, '-=0.4')
+    .to('.hero-invite-text', { opacity: 1, y: 0, duration: 1, from: { y: 20 } }, '-=0.6')
+    .to('.hero-bride-name',  { opacity: 1, y: 0, duration: 1.2, from: { y: 40 } }, '-=0.4')
+    .to('.hero-with',        { opacity: 1, duration: 0.8 }, '-=0.4')
+    .to('.hero-groom-name',  { opacity: 1, y: 0, duration: 1.2, from: { y: 40 } }, '-=0.6')
+    .to('.hero-date-badge',  { opacity: 1, y: 0, duration: 1, from: { y: 20 } }, '-=0.4')
+    .to('#scroll-cue',       { opacity: 1, duration: 0.8 });
+
+  // ── BLESSINGS SECTION ──
+  gsap.utils.toArray('#blessings .reveal-item').forEach((el, i) => {
+    gsap.fromTo(el,
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        ease: 'power3.out',
+        delay: i * 0.15,
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 85%',
+          toggleActions: 'play none none none'
+        }
+      }
+    );
+  });
+
+  // ── COUPLE SECTION — PHOTO MASK REVEAL ──
+  // Bride clip-path reveal
+  gsap.fromTo('#bride-clip',
+    { clipPath: 'inset(50% 50% 50% 50%)' },
+    {
+      clipPath: 'inset(0% 0% 0% 0%)',
+      duration: 1.5,
+      ease: 'power2.inOut',
+      scrollTrigger: {
+        trigger: '#bride-clip',
+        start: 'top 75%',
+        toggleActions: 'play none none none'
+      }
+    }
+  );
+  // Bride image subtle zoom-out
+  gsap.fromTo('#bride-img',
+    { scale: 1.12 },
+    {
+      scale: 1,
+      duration: 1.8,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '#bride-clip',
+        start: 'top 75%',
+        toggleActions: 'play none none none'
+      }
+    }
+  );
+  // Bride frame
+  gsap.to('#bride-frame', {
+    opacity: 1,
+    scale: 1,
+    duration: 1,
+    delay: 0.8,
+    ease: 'power2.out',
+    scrollTrigger: {
+      trigger: '#bride-clip',
+      start: 'top 75%',
+      toggleActions: 'play none none none'
+    }
+  });
+
+  // Groom clip-path reveal (staggered)
+  gsap.fromTo('#groom-clip',
+    { clipPath: 'inset(50% 50% 50% 50%)' },
+    {
+      clipPath: 'inset(0% 0% 0% 0%)',
+      duration: 1.5,
+      ease: 'power2.inOut',
+      delay: 0.3,
+      scrollTrigger: {
+        trigger: '#groom-clip',
+        start: 'top 75%',
+        toggleActions: 'play none none none'
+      }
+    }
+  );
+  gsap.fromTo('#groom-img',
+    { scale: 1.12 },
+    {
+      scale: 1,
+      duration: 1.8,
+      ease: 'power2.out',
+      delay: 0.3,
+      scrollTrigger: {
+        trigger: '#groom-clip',
+        start: 'top 75%',
+        toggleActions: 'play none none none'
+      }
+    }
+  );
+  gsap.to('#groom-frame', {
+    opacity: 1,
+    scale: 1,
+    duration: 1,
+    delay: 1.1,
+    ease: 'power2.out',
+    scrollTrigger: {
+      trigger: '#groom-clip',
+      start: 'top 75%',
+      toggleActions: 'play none none none'
+    }
+  });
+
+  // Ampersand float
+  gsap.to('#couple-amp', {
+    opacity: 0.9,
+    duration: 1,
+    ease: 'power2.out',
+    scrollTrigger: {
+      trigger: '#couple',
+      start: 'top 60%',
+      toggleActions: 'play none none none'
+    }
+  });
+
+  // Person cards info drift up
+  gsap.utils.toArray('#couple .reveal-item').forEach((el, i) => {
+    gsap.fromTo(el,
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1.4,
+        ease: 'power3.out',
+        delay: i * 0.2,
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 80%',
+          toggleActions: 'play none none none'
+        }
+      }
+    );
+  });
+
+  // ── STORY SECTION — Line-by-line stagger ──
+  gsap.utils.toArray('#story .story-line').forEach((line, i) => {
+    gsap.fromTo(line,
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1.4,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: line,
+          start: 'top 88%',
+          scrub: false,
+          toggleActions: 'play none none reverse'
+        },
+        delay: i * 0.1
+      }
+    );
+  });
+
+  // Parallax on story bg ornament
+  gsap.to('#story .story-bg-ornament', {
+    y: -80,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '#story',
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: 2
+    }
+  });
+
+  // ── DETAILS SECTION ──
+  gsap.fromTo('.details-title',
+    { opacity: 0, y: 30 },
+    {
+      opacity: 1, y: 0, duration: 1.2, ease: 'power3.out',
+      scrollTrigger: { trigger: '.details-title', start: 'top 85%', toggleActions: 'play none none none' }
+    }
+  );
+
+  gsap.fromTo('#detail-date',
+    { opacity: 0, x: -30 },
+    {
+      opacity: 1, x: 0, duration: 1.2, ease: 'power3.out',
+      scrollTrigger: { trigger: '#detail-date', start: 'top 82%', toggleActions: 'play none none none' }
+    }
+  );
+
+  gsap.fromTo('#detail-venue',
+    { opacity: 0, x: 30 },
+    {
+      opacity: 1, x: 0, duration: 1.2, ease: 'power3.out',
+      scrollTrigger: { trigger: '#detail-venue', start: 'top 82%', toggleActions: 'play none none none' }
+    }
+  );
+
+  gsap.fromTo('#muhurtham',
+    { opacity: 0, y: 20, scale: 0.96 },
+    {
+      opacity: 1, y: 0, scale: 1, duration: 1.2, ease: 'power3.out',
+      scrollTrigger: { trigger: '#muhurtham', start: 'top 85%', toggleActions: 'play none none none' }
+    }
+  );
+
+  gsap.fromTo('#maps-link',
+    { opacity: 0, y: 10 },
+    {
+      opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', delay: 0.4,
+      scrollTrigger: { trigger: '#maps-link', start: 'top 88%', toggleActions: 'play none none none' }
+    }
+  );
+
+  gsap.fromTo('#sharing-block',
+    { opacity: 0, y: 20 },
+    {
+      opacity: 1, y: 0, duration: 1.2, ease: 'power3.out',
+      scrollTrigger: { trigger: '#sharing-block', start: 'top 85%', toggleActions: 'play none none none' }
+    }
+  );
+
+  // ── RSVP SECTION ──
+  const rsvpTl = gsap.timeline({
+    scrollTrigger: {
+      trigger: '#rsvp',
+      start: 'top 70%',
+      toggleActions: 'play none none none'
+    }
+  });
+  rsvpTl
+    .to('#rsvp-title',    { opacity: 1, y: 0, duration: 1.2, from: { y: 40 }, ease: 'power3.out' })
+    .to('#rsvp-subtitle', { opacity: 1, y: 0, duration: 1,   from: { y: 20 }, ease: 'power3.out' }, '-=0.6')
+    .to('#whatsapp-btn',  { opacity: 1, y: 0, duration: 1,   from: { y: 20 }, ease: 'power3.out' }, '-=0.4')
+    .to('#rsvp-blessing', { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.2');
+
+  // Parallax hero mandala on scroll
+  gsap.to('#hero .bg-mandala', {
+    y: 120,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '#hero',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: 2
+    }
+  });
+
+  // Scroll cue fade out on scroll
+  gsap.to('#scroll-cue', {
+    opacity: 0,
+    y: -20,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '#hero',
+      start: 'top top',
+      end: '15% top',
+      scrub: 1
+    }
+  });
+
+  // Ornament corners draw in for blessings section
+  gsap.utils.toArray('#blessings .ornament-corner').forEach((c, i) => {
+    gsap.fromTo(c,
+      { opacity: 0, scale: 0.7 },
+      {
+        opacity: 0.35,
+        scale: 1,
+        duration: 1.5,
+        ease: 'power2.out',
+        delay: i * 0.1,
+        scrollTrigger: {
+          trigger: '#blessings',
+          start: 'top 80%',
+          toggleActions: 'play none none none'
+        }
+      }
+    );
+  });
+}
+</script>
+
+</body>
+</html>
