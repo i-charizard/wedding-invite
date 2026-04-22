@@ -2,34 +2,53 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Lakshmi & Abhilash — Wedding Invitation</title>
+<meta name="description" content="The wedding invitation of Lakshmi Das & Abhilash Vijayan, 13 May 2026, Seema Auditorium, Perumbavoor.">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
-  /* =============================================
-     CSS CUSTOM PROPERTIES — ROYAL PALETTE
-  ============================================= */
+  /* ==============================================================
+     ROYAL HEIRLOOM PALETTE
+     Deepened from the minimal ivory look. Same hue family,
+     richer gradients, added warm sepia / saffron accents.
+  ============================================================== */
   :root {
-    --ivory:        #FFFDF5;
-    --ivory-dark:   #F5F0E0;
-    --ivory-deep:   #EDE5CC;
-    --gold:         #AF9500;
-    --gold-light:   #D4B800;
-    --gold-pale:    #E8D88A;
-    --gold-sheen:   #C9A84C;
-    --charcoal:     #2C2416;
-    --charcoal-mid: #4A3F2F;
-    --charcoal-soft:#6B5D4A;
-    --cream-text:   #7A6A50;
-    --red-accent:   #8B1A2A;
+    --ivory:          #FBF6E4;
+    --ivory-warm:     #F5ECCF;
+    --ivory-dark:     #EFE3BC;
+    --ivory-deep:     #E5D4A3;
+    --parchment:      #F1E4BE;
+    --sepia-wash:     #D9BE7A;
+
+    --gold:           #AF9500;
+    --gold-deep:      #8A7200;
+    --gold-light:     #D4B800;
+    --gold-pale:      #E8D88A;
+    --gold-sheen:     #C9A84C;
+    --gold-foil-1:    #F8E9A8;
+    --gold-foil-2:    #B9860B;
+    --gold-foil-3:    #E2B84A;
+
+    --charcoal:       #2C2416;
+    --charcoal-mid:   #4A3F2F;
+    --charcoal-soft:  #6B5D4A;
+    --cream-text:     #7A6A50;
+
+    --red-accent:     #8B1A2A;
+    --maroon-deep:    #5E1018;
+    --saffron:        #CC7A1A;
+
+    --shadow-warm:    0 20px 60px -20px rgba(74,63,47,0.25);
+    --shadow-frame:   0 30px 70px -25px rgba(44,36,22,0.35), 0 0 0 1px rgba(175,149,0,0.15);
   }
 
-  /* =============================================
+  /* ==============================================================
      RESET & BASE
-  ============================================= */
+  ============================================================== */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   html {
@@ -43,33 +62,154 @@
     font-family: 'Cormorant Garamond', serif;
     overflow-x: hidden;
     cursor: default;
+    /* base warm vignette wash so dark areas never feel flat */
+    background-image:
+      radial-gradient(ellipse at 20% 10%, rgba(217,190,122,0.35) 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 90%, rgba(175,149,0,0.18) 0%, transparent 60%),
+      linear-gradient(180deg, var(--ivory) 0%, var(--ivory-warm) 100%);
+    background-attachment: fixed;
   }
 
-  /* =============================================
-     PAPER TEXTURE OVERLAY (CSS noise)
-  ============================================= */
+  /* paper grain overlay (top-most) */
   body::before {
     content: '';
     position: fixed;
     inset: 0;
     pointer-events: none;
     z-index: 9999;
-    opacity: 0.025;
+    opacity: 0.04;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
     background-size: 200px 200px;
+    mix-blend-mode: multiply;
   }
 
-  /* =============================================
-     SECTION SPACING
-  ============================================= */
-  section {
-    position: relative;
+  /* ==============================================================
+     ATMOSPHERIC BACKGROUND STACK  (fixed, viewport-wide)
+  ============================================================== */
+  .atmospheric-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
     overflow: hidden;
   }
 
-  /* =============================================
-     ORNAMENT SVGs
-  ============================================= */
+  .atmo-layer {
+    position: absolute;
+    inset: -8%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    will-change: opacity, transform;
+    transform: scale(1.06);
+  }
+
+  /* faded HD placeholder URLs — SWAP each with final HD asset */
+  .atmo-pookalam {
+    background-image: url('https://images.unsplash.com/photo-1604580864964-0462f5d5b1a8?w=2000&q=85');
+    mix-blend-mode: multiply;
+  }
+  .atmo-hands {
+    background-image: url('https://images.unsplash.com/photo-1583939411023-14783179e581?w=2000&q=85');
+    mix-blend-mode: soft-light;
+  }
+  .atmo-couple-hands {
+    background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=2000&q=85');
+    mix-blend-mode: overlay;
+  }
+  .atmo-mangalsutra {
+    background-image: url('https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=2000&q=85');
+    mix-blend-mode: multiply;
+  }
+  .atmo-saree {
+    background-image: url('https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=2000&q=85');
+    mix-blend-mode: soft-light;
+  }
+
+  /* warm cream wash */
+  .atmo-wash {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at center, rgba(251,246,228,0.55) 0%, rgba(251,246,228,0.85) 70%, rgba(245,236,207,0.95) 100%);
+    mix-blend-mode: normal;
+    pointer-events: none;
+  }
+
+  /* ==============================================================
+     VIEWPORT CORNER GARLANDS  (fixed, always visible)
+  ============================================================== */
+  .viewport-corners {
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+  }
+
+  .vc {
+    position: absolute;
+    width: clamp(140px, 22vw, 260px);
+    height: clamp(140px, 22vw, 260px);
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+  .vc.tl { top: 0;    left: 0;   }
+  .vc.tr { top: 0;    right: 0;  transform: scaleX(-1); }
+  .vc.bl { bottom: 0; left: 0;   transform: scaleY(-1); }
+  .vc.br { bottom: 0; right: 0;  transform: scale(-1); }
+
+  @media (max-width: 480px) {
+    .vc { width: 120px; height: 120px; }
+  }
+
+  /* ==============================================================
+     FALLING LEAVES (NEW ADDITION)
+  ============================================================== */
+  #leaves-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    overflow: hidden;
+  }
+  .leaf {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: linear-gradient(135deg, var(--gold-pale), var(--gold-deep));
+    border-radius: 0 50% 0 50%;
+    opacity: 0;
+    animation: fall linear infinite;
+  }
+  @keyframes fall {
+    0% { transform: translateY(-10vh) rotate(0deg) translateX(0); opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.8; }
+    100% { transform: translateY(110vh) rotate(360deg) translateX(50px); opacity: 0; }
+  }
+
+  /* ==============================================================
+     SECTION BASE
+  ============================================================== */
+  section {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+  .light-section {
+    background: linear-gradient(180deg,
+                  rgba(251,246,228,0.78) 0%,
+                  rgba(245,236,207,0.82) 100%);
+  }
+  .dark-section {
+    background: var(--charcoal);
+    z-index: 2;
+  }
+
+  /* ==============================================================
+     SHARED ORNAMENTS
+  ============================================================== */
   .ornament-divider {
     display: block;
     width: 100%;
@@ -80,41 +220,36 @@
 
   .ornament-corner {
     position: absolute;
-    width: 120px;
-    height: 120px;
+    width: clamp(80px, 14vw, 140px);
+    height: clamp(80px, 14vw, 140px);
     opacity: 0.35;
+    pointer-events: none;
   }
   .ornament-corner.tl { top: 0; left: 0; }
   .ornament-corner.tr { top: 0; right: 0; transform: scaleX(-1); }
   .ornament-corner.bl { bottom: 0; left: 0; transform: scaleY(-1); }
   .ornament-corner.br { bottom: 0; right: 0; transform: scale(-1); }
 
-  /* =============================================
+  /* ==============================================================
      LOADING SCREEN
-  ============================================= */
+  ============================================================== */
   #loading-screen {
     position: fixed;
     inset: 0;
     z-index: 10000;
-    background: var(--charcoal);
+    background: radial-gradient(ellipse at center, #3B2E1A 0%, var(--charcoal) 80%);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 24px;
   }
-
   .loading-mandala {
     width: 80px;
     height: 80px;
     animation: spin 3s linear infinite;
   }
-
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
-  }
-
+  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
   .loading-text {
     font-family: 'Cinzel', serif;
     font-size: 0.75rem;
@@ -123,46 +258,72 @@
     text-transform: uppercase;
   }
 
-  /* =============================================
+  /* ==============================================================
      SECTION 1 — HERO
-  ============================================= */
+  ============================================================== */
+  /*
   #hero {
     min-height: 100svh;
-    background: var(--ivory);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 60px 24px;
+    padding: clamp(60px, 12vh, 100px) 24px;
     position: relative;
   }
+    */
+  #hero {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: clamp(60px, 12vh, 100px) 24px;
+    position: relative;
+    width: 100%; /* Ensure this is 100% */
+}
 
   #hero .bg-mandala {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: min(700px, 120vw);
-    height: min(700px, 120vw);
-    opacity: 0.07;
+    width: min(800px, 130vw);
+    height: min(800px, 130vw);
+    opacity: 0.08;
     pointer-events: none;
     z-index: 0;
-    animation: pulse-slow 8s ease-in-out infinite;
+    animation: pulse-slow 9s ease-in-out infinite;
   }
-
   @keyframes pulse-slow {
-    0%, 100% { opacity: 0.07; transform: translate(-50%,-50%) scale(1); }
-    50%       { opacity: 0.1;  transform: translate(-50%,-50%) scale(1.04); }
+    0%, 100% { opacity: 0.08; transform: translate(-50%,-50%) scale(1); }
+    50%       { opacity: 0.12; transform: translate(-50%,-50%) scale(1.04); }
   }
 
+  /*
   .hero-ganesh {
-    width: 72px;
-    margin-bottom: 32px;
+    width: clamp(72px, 10vw, 96px);
+    margin-bottom: 28px;
     position: relative;
     z-index: 1;
     opacity: 0;
+    filter:
+      drop-shadow(0 1px 0 rgba(255,240,180,0.6))
+      drop-shadow(0 2px 4px rgba(74,63,47,0.25));
   }
+      */
+  .hero-ganesh {
+    /* Use clamp to keep the icon size responsive */
+    width: clamp(80px, 15vw, 120px); 
+    margin-bottom: 28px;
+    position: relative;
+    z-index: 1;
+    opacity: 0; /* Keep this at 0 so the animation can fade it in */
+    
+    /* Ensure it doesn't shrink the flex container */
+    flex-shrink: 0; }
 
   .hero-hosts {
     font-family: 'Cormorant Garamond', serif;
@@ -192,20 +353,21 @@
 
   .hero-bride-name {
     font-family: 'Great Vibes', cursive;
-    font-size: clamp(3.5rem, 12vw, 7rem);
+    font-size: clamp(3.5rem, 12vw, 7.5rem);
     color: var(--charcoal);
     line-height: 1;
     position: relative;
     z-index: 1;
     opacity: 0;
     margin-bottom: 4px;
+    text-shadow: 0 2px 18px rgba(175,149,0,0.12);
   }
 
   .hero-with {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-size: clamp(1rem, 3vw, 1.4rem);
-    color: var(--gold);
+    color: var(--gold-deep);
     letter-spacing: 0.2em;
     position: relative;
     z-index: 1;
@@ -215,13 +377,14 @@
 
   .hero-groom-name {
     font-family: 'Great Vibes', cursive;
-    font-size: clamp(3.5rem, 12vw, 7rem);
+    font-size: clamp(3.5rem, 12vw, 7.5rem);
     color: var(--charcoal);
     line-height: 1;
     position: relative;
     z-index: 1;
     opacity: 0;
     margin-bottom: 36px;
+    text-shadow: 0 2px 18px rgba(175,149,0,0.12);
   }
 
   .hero-date-badge {
@@ -233,6 +396,8 @@
     position: relative;
     z-index: 1;
     opacity: 0;
+    background: rgba(251,246,228,0.5);
+    backdrop-filter: blur(2px);
   }
 
   .hero-date-badge::before,
@@ -244,14 +409,14 @@
     border-color: var(--gold);
     border-style: solid;
   }
-  .hero-date-badge::before { top: -4px; left: -4px; border-width: 2px 0 0 2px; }
+  .hero-date-badge::before { top: -4px; left: -4px;   border-width: 2px 0 0 2px; }
   .hero-date-badge::after  { bottom: -4px; right: -4px; border-width: 0 2px 2px 0; }
 
   .hero-date-badge .day {
     font-family: 'Cinzel', serif;
     font-size: 0.7rem;
     letter-spacing: 0.4em;
-    color: var(--gold);
+    color: var(--gold-deep);
     text-transform: uppercase;
     margin-bottom: 4px;
   }
@@ -300,12 +465,11 @@
     50%      { transform: scaleY(0.6); opacity: 0.4; }
   }
 
-  /* =============================================
+  /* ==============================================================
      SECTION 2 — PARENTS / BLESSINGS
-  ============================================= */
+  ============================================================== */
   #blessings {
-    padding: 100px 24px;
-    background: linear-gradient(180deg, var(--ivory) 0%, var(--ivory-dark) 100%);
+    padding: clamp(80px, 12vh, 120px) 24px;
     text-align: center;
   }
 
@@ -313,7 +477,7 @@
     font-family: 'Cinzel', serif;
     font-size: 0.65rem;
     letter-spacing: 0.5em;
-    color: var(--gold);
+    color: var(--gold-deep);
     text-transform: uppercase;
     margin-bottom: 24px;
     display: block;
@@ -363,19 +527,12 @@
   .blessings-connector .line.r {
     background: linear-gradient(to left, transparent, var(--gold-pale));
   }
-  .blessings-connector .diamond {
-    width: 8px;
-    height: 8px;
-    background: var(--gold);
-    transform: rotate(45deg);
-  }
 
-  /* =============================================
-     SECTION 3 — THE COUPLE REVEAL
-  ============================================= */
+  /* ==============================================================
+     SECTION 3 — THE COUPLE 
+  ============================================================== */
   #couple {
-    padding: 120px 24px;
-    background: var(--ivory-dark);
+    padding: clamp(90px, 14vh, 140px) 24px;
     text-align: center;
     position: relative;
   }
@@ -384,7 +541,7 @@
     font-family: 'Cinzel', serif;
     font-size: 0.65rem;
     letter-spacing: 0.5em;
-    color: var(--gold);
+    color: var(--gold-deep);
     text-transform: uppercase;
     margin-bottom: 60px;
   }
@@ -393,7 +550,7 @@
     display: flex;
     flex-direction: column;
     gap: 80px;
-    max-width: 900px;
+    max-width: 1100px;
     margin: 0 auto;
   }
 
@@ -401,7 +558,7 @@
     .couple-gallery {
       flex-direction: row;
       align-items: flex-start;
-      gap: 60px;
+      gap: 72px;
     }
   }
 
@@ -410,44 +567,62 @@
     text-align: center;
   }
 
-  /* MASKING REVEAL FRAME */
   .photo-mask-wrapper {
     position: relative;
     display: inline-block;
     width: 100%;
-    max-width: 320px;
-    margin: 0 auto 28px;
+    max-width: 420px;
+    margin: 0 auto 32px;
+    box-shadow: var(--shadow-frame);
   }
 
   .photo-frame-border {
     position: absolute;
-    inset: -12px;
+    inset: -14px;
     border: 1.5px solid var(--gold);
     pointer-events: none;
     z-index: 2;
     opacity: 0;
     transform: scale(0.92);
   }
+  .photo-frame-border::after {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 0.5px solid rgba(175,149,0,0.4);
+    pointer-events: none;
+  }
 
   .photo-frame-corner {
     position: absolute;
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     z-index: 3;
   }
   .photo-frame-corner svg { width: 100%; height: 100%; }
-  .photo-frame-corner.tl { top: -18px; left: -18px; }
-  .photo-frame-corner.tr { top: -18px; right: -18px; transform: scaleX(-1); }
-  .photo-frame-corner.bl { bottom: -18px; left: -18px; transform: scaleY(-1); }
-  .photo-frame-corner.br { bottom: -18px; right: -18px; transform: scale(-1); }
+  .photo-frame-corner.tl { top: -20px; left: -20px; }
+  .photo-frame-corner.tr { top: -20px; right: -20px; transform: scaleX(-1); }
+  .photo-frame-corner.bl { bottom: -20px; left: -20px; transform: scaleY(-1); }
+  .photo-frame-corner.br { bottom: -20px; right: -20px; transform: scale(-1); }
 
   .photo-clip {
     overflow: hidden;
-    /* aspect-ratio ensures shape even before image loads */
     aspect-ratio: 3/4;
-    clip-path: inset(50% 50% 50% 50%); /* starts fully clipped */
+    clip-path: inset(50% 50% 50% 50%);
     position: relative;
     background: var(--ivory-deep);
+  }
+
+  .photo-clip::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(180deg,
+      rgba(251,246,228,0.00) 0%,
+      rgba(251,246,228,0.00) 70%,
+      rgba(44,36,22,0.18) 100%);
   }
 
   .photo-clip img {
@@ -460,16 +635,9 @@
     transition: transform 0.6s ease;
   }
 
-  /* =============================================
-     SWAP IMAGES HERE:
-     Replace the src values below with actual photo URLs.
-     groom.jpg → Abhilash Vijayan's photo
-     bride.jpg → Lakshmi Das's photo
-  ============================================= */
-
   .person-name-script {
     font-family: 'Great Vibes', cursive;
-    font-size: clamp(2.5rem, 8vw, 3.5rem);
+    font-size: clamp(2.5rem, 8vw, 3.8rem);
     color: var(--charcoal);
     line-height: 1.1;
     margin-bottom: 8px;
@@ -479,7 +647,7 @@
     font-family: 'Cinzel', serif;
     font-size: 0.6rem;
     letter-spacing: 0.4em;
-    color: var(--gold);
+    color: var(--gold-deep);
     text-transform: uppercase;
     margin-bottom: 12px;
   }
@@ -493,27 +661,24 @@
   }
 
   .couple-ampersand {
-    font-family: 'Great Vibes', cursive;
-    font-size: clamp(4rem, 15vw, 8rem);
-    color: var(--gold);
-    line-height: 1;
     align-self: center;
     opacity: 0;
   }
-
   @media (max-width: 767px) {
     .couple-ampersand { display: none; }
   }
 
-  /* =============================================
-     SECTION 4 — STORY / NARRATIVE
-  ============================================= */
+  /* ==============================================================
+     SECTION 4 — STORY / NARRATIVE  (dark)
+  ============================================================== */
   #story {
-    padding: 140px 24px;
-    background: var(--charcoal);
+    padding: clamp(100px, 18vh, 160px) 24px;
     text-align: center;
     position: relative;
     overflow: hidden;
+    background:
+      radial-gradient(ellipse at center, #3B2E1A 0%, var(--charcoal) 70%),
+      var(--charcoal);
   }
 
   #story .story-bg-ornament {
@@ -521,8 +686,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    width: min(900px, 150vw);
-    opacity: 0.04;
+    width: min(1000px, 160vw);
+    opacity: 0.045;
     pointer-events: none;
   }
 
@@ -553,14 +718,43 @@
     color: var(--gold-pale);
     font-style: normal;
     font-weight: 400;
+    text-shadow: 0 2px 20px rgba(232,216,138,0.25);
   }
+  @media (max-width: 720px) {
+    .ganesh-wrap {
+        gap: 20px;
+    }
+}
 
-  /* =============================================
+  .ganesh-wrap {
+    /*display: flex;*/
+    width: 50px;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin: 12px auto 36px;
+    max-width: 520px;
+    flex-wrap: wrap;
+}
+    /*
+.ganesh-wrap {
+  width: 40px; 
+  height: auto;
+  margin-bottom: 20px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+}
+*/
+
+
+  /* ==============================================================
      SECTION 5 — DETAILS
-  ============================================= */
+  ============================================================== */
   #details {
-    padding: 120px 24px;
-    background: var(--ivory);
+    padding: clamp(90px, 14vh, 140px) 24px;
     text-align: center;
     position: relative;
   }
@@ -587,7 +781,6 @@
     gap: 48px;
     margin-bottom: 60px;
   }
-
   @media (min-width: 600px) {
     .detail-row { grid-template-columns: 1fr 1px 1fr; }
   }
@@ -607,7 +800,7 @@
     font-family: 'Cinzel', serif;
     font-size: 0.6rem;
     letter-spacing: 0.5em;
-    color: var(--gold);
+    color: var(--gold-deep);
     text-transform: uppercase;
     margin-bottom: 10px;
   }
@@ -633,9 +826,7 @@
     background: var(--gold-pale);
     display: none;
   }
-  @media (min-width: 600px) {
-    .detail-divider { display: block; }
-  }
+  @media (min-width: 600px) { .detail-divider { display: block; } }
 
   .muhurtham-block {
     border: 1px solid var(--gold-pale);
@@ -647,6 +838,7 @@
     display: inline-block;
     width: 100%;
     max-width: 400px;
+    background: rgba(251,246,228,0.4);
   }
 
   .muhurtham-block::before {
@@ -655,12 +847,12 @@
     top: -11px;
     left: 50%;
     transform: translateX(-50%);
-    background: var(--ivory);
+    background: var(--ivory-warm);
     padding: 0 16px;
     font-family: 'Cinzel', serif;
     font-size: 0.6rem;
     letter-spacing: 0.4em;
-    color: var(--gold);
+    color: var(--gold-deep);
     text-transform: uppercase;
     white-space: nowrap;
   }
@@ -679,7 +871,6 @@
     margin-top: 6px;
   }
 
-  /* Maps CTA */
   .maps-link {
     display: inline-flex;
     align-items: center;
@@ -696,10 +887,9 @@
     transition: color 0.3s, border-color 0.3s;
     opacity: 0;
   }
-  .maps-link:hover { color: var(--gold); }
+  .maps-link:hover { color: var(--gold-deep); }
   .maps-link svg { width: 14px; height: 14px; }
 
-  /* Sharing contact */
   .sharing-block {
     margin-top: 64px;
     padding-top: 48px;
@@ -735,12 +925,11 @@
     border-bottom: 1px dotted var(--gold);
   }
 
-  /* =============================================
-     SECTION 6 — RSVP / CLOSE
-  ============================================= */
+  /* ==============================================================
+     SECTION 6 — RSVP  (dark)
+  ============================================================== */
   #rsvp {
-    padding: 140px 24px;
-    background: var(--charcoal);
+    padding: clamp(100px, 18vh, 160px) 24px;
     text-align: center;
     position: relative;
   }
@@ -748,7 +937,8 @@
   #rsvp .rsvp-bg {
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at center, #3D3020 0%, var(--charcoal) 70%);
+    background:
+      radial-gradient(ellipse at center, #3D3020 0%, var(--charcoal) 70%);
   }
 
   .rsvp-inner {
@@ -765,6 +955,7 @@
     line-height: 1;
     margin-bottom: 24px;
     opacity: 0;
+    text-shadow: 0 2px 24px rgba(232,216,138,0.25);
   }
 
   .rsvp-subtitle {
@@ -787,7 +978,6 @@
     opacity: 0;
   }
 
-  /* WhatsApp CTA button */
   .whatsapp-btn {
     display: inline-flex;
     align-items: center;
@@ -817,20 +1007,21 @@
     transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
     z-index: 0;
   }
-
   .whatsapp-btn:hover::before { transform: translateX(0); }
   .whatsapp-btn:hover { color: var(--charcoal); }
   .whatsapp-btn span, .whatsapp-btn svg { position: relative; z-index: 1; }
   .whatsapp-btn svg { width: 18px; height: 18px; }
 
-  /* =============================================
+  /* ==============================================================
      FOOTER
-  ============================================= */
+  ============================================================== */
   footer {
     background: var(--charcoal);
     padding: 32px 24px;
     text-align: center;
     border-top: 1px solid rgba(175,149,0,0.2);
+    position: relative;
+    z-index: 2;
   }
   footer p {
     font-family: 'Cormorant Garamond', serif;
@@ -840,24 +1031,30 @@
     letter-spacing: 0.05em;
   }
 
-  /* =============================================
-     RESPONSIVE HELPERS
-  ============================================= */
+  /* ==============================================================
+     RESPONSIVE & A11Y
+  ============================================================== */
   .reveal-item { will-change: transform, opacity; }
+
+  @media (max-width: 640px) {
+    .atmo-layer { opacity: 0 !important; }
+    .vc { opacity: 0; }
+  }
 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
     .photo-clip { clip-path: none !important; }
+    .atmo-layer { opacity: 0.18 !important; transform: none !important; }
+    .vc         { opacity: 1 !important; transform: initial !important; }
+    .vc.tr { transform: scaleX(-1) !important; }
+    .vc.bl { transform: scaleY(-1) !important; }
+    .vc.br { transform: scale(-1) !important; }
   }
 </style>
 </head>
 <body>
 
-<!-- =============================================
-     LOADING SCREEN
-============================================= -->
 <div id="loading-screen">
-  <!-- Mandala spinner -->
   <svg class="loading-mandala" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
     <circle cx="50" cy="50" r="45" stroke="#AF9500" stroke-width="0.8" stroke-dasharray="4 6"/>
     <circle cx="50" cy="50" r="35" stroke="#AF9500" stroke-width="0.5" stroke-dasharray="2 4" opacity="0.6"/>
@@ -871,12 +1068,262 @@
   <p class="loading-text">Unfolding your invitation…</p>
 </div>
 
-<!-- =============================================
-     SECTION 1 — HERO
-============================================= -->
-<section id="hero">
+<div id="leaves-container" aria-hidden="true"></div>
 
-  <!-- Background mandala watermark -->
+<div class="atmospheric-bg" aria-hidden="true">
+  <div class="atmo-layer atmo-pookalam"       id="atmo-pookalam"></div>
+  <div class="atmo-layer atmo-hands"          id="atmo-hands"></div>
+  <div class="atmo-layer atmo-couple-hands"   id="atmo-couple-hands"></div>
+  <div class="atmo-layer atmo-mangalsutra"    id="atmo-mangalsutra"></div>
+  <div class="atmo-layer atmo-saree"          id="atmo-saree"></div>
+  <div class="atmo-wash"></div>
+</div>
+
+<div class="viewport-corners" aria-hidden="true">
+
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <linearGradient id="goldFoil" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%"   stop-color="#F8E9A8"/>
+        <stop offset="35%"  stop-color="#E2B84A"/>
+        <stop offset="65%"  stop-color="#B9860B"/>
+        <stop offset="100%" stop-color="#8A7200"/>
+      </linearGradient>
+      <linearGradient id="goldFoilSoft" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%"   stop-color="#E8D88A"/>
+        <stop offset="50%"  stop-color="#C9A84C"/>
+        <stop offset="100%" stop-color="#AF9500"/>
+      </linearGradient>
+      <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur stdDeviation="0.6" result="blur"/>
+        <feMerge>
+          <feMergeNode in="blur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+      <filter id="goldEmboss" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur in="SourceAlpha" stdDeviation="0.4"/>
+        <feOffset dx="0" dy="0.6" result="offsetblur"/>
+        <feComponentTransfer>
+          <feFuncA type="linear" slope="0.6"/>
+        </feComponentTransfer>
+        <feMerge>
+          <feMergeNode/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+  </svg>
+
+  <svg class="vc tl" viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="url(#goldFoil)" fill="none" filter="url(#goldGlow)">
+      <circle cx="0" cy="0" r="240" stroke-width="0.5"/>
+      <circle cx="0" cy="0" r="200" stroke-width="0.4" stroke-dasharray="2 3"/>
+      <circle cx="0" cy="0" r="160" stroke-width="0.6"/>
+      <circle cx="0" cy="0" r="120" stroke-width="0.4"/>
+      <circle cx="0" cy="0" r="80"  stroke-width="0.5" stroke-dasharray="1 2"/>
+      <path d="M0 80  Q12 70  0  60  Q-6 70 0 80"/>
+      <path d="M20 78 Q30 64 18 52 Q8 60 20 78" transform="rotate(15 0 0)"/>
+      <path d="M20 78 Q30 64 18 52 Q8 60 20 78" transform="rotate(30 0 0)"/>
+      <path d="M20 78 Q30 64 18 52 Q8 60 20 78" transform="rotate(45 0 0)"/>
+      <path d="M20 78 Q30 64 18 52 Q8 60 20 78" transform="rotate(60 0 0)"/>
+      <path d="M20 78 Q30 64 18 52 Q8 60 20 78" transform="rotate(75 0 0)"/>
+    </g>
+    <path d="M18 18 C 60 40, 80 90, 90 140 C 100 190, 150 220, 210 235"
+          stroke="url(#goldFoil)" stroke-width="1.2" fill="none" filter="url(#goldGlow)"/>
+    <path d="M18 18 C 70 55, 100 110, 110 170"
+          stroke="url(#goldFoilSoft)" stroke-width="0.5" fill="none" opacity="0.7"/>
+    <g fill="url(#goldFoil)" filter="url(#goldEmboss)">
+      <circle cx="40" cy="32"  r="2.6"/>
+      <circle cx="58" cy="48"  r="2.4"/>
+      <circle cx="74" cy="66"  r="2.8"/>
+      <circle cx="86" cy="88"  r="2.4"/>
+      <circle cx="92" cy="112" r="2.8"/>
+      <circle cx="96" cy="138" r="2.4"/>
+      <circle cx="102" cy="164" r="2.8"/>
+      <circle cx="118" cy="188" r="2.4"/>
+      <circle cx="148" cy="208" r="2.8"/>
+      <circle cx="178" cy="224" r="2.4"/>
+    </g>
+    <g transform="translate(30 30)" stroke="url(#goldFoil)" fill="none" stroke-width="0.9" filter="url(#goldGlow)">
+      <path d="M0 14 C -4 8 -10 6 -14 8 C -10 2 -4 0 0 -6 C 4 0 10 2 14 8 C 10 6 4 8 0 14Z"/>
+      <path d="M0 14 C -2 10 -6 8 -10 10" stroke-width="0.6"/>
+      <path d="M0 14 C 2 10 6 8 10 10"   stroke-width="0.6"/>
+      <path d="M0 14 L0 18" stroke-width="0.8"/>
+      <circle cx="0" cy="6" r="1.2" fill="url(#goldFoil)"/>
+    </g>
+    <g stroke="url(#goldFoilSoft)" fill="none" stroke-width="0.6" opacity="0.8">
+      <circle cx="140" cy="40" r="3"/>
+      <circle cx="140" cy="40" r="1" fill="url(#goldFoil)"/>
+      <path d="M134 40 Q140 34 146 40 Q140 46 134 40Z"/>
+      <circle cx="40" cy="140" r="3"/>
+      <circle cx="40" cy="140" r="1" fill="url(#goldFoil)"/>
+      <path d="M34 140 Q40 134 46 140 Q40 146 34 140Z"/>
+      <circle cx="200" cy="80" r="2.5"/>
+      <circle cx="80" cy="200" r="2.5"/>
+    </g>
+    <g fill="url(#goldFoil)" filter="url(#goldEmboss)">
+      <circle cx="130" cy="8"  r="1.8"/>
+      <circle cx="130" cy="18" r="1.8"/>
+      <circle cx="130" cy="28" r="1.8"/>
+      <circle cx="130" cy="38" r="1.8"/>
+      <circle cx="130" cy="48" r="2"/>
+    </g>
+    <path d="M128 52 Q130 58 132 52 M126 54 Q130 62 134 54"
+          stroke="url(#goldFoilSoft)" stroke-width="0.5" fill="none"/>
+  </svg>
+
+  <svg class="vc tr" viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="url(#goldFoil)" fill="none" filter="url(#goldGlow)">
+      <circle cx="0" cy="0" r="240" stroke-width="0.5"/>
+      <circle cx="0" cy="0" r="200" stroke-width="0.4" stroke-dasharray="2 3"/>
+      <circle cx="0" cy="0" r="160" stroke-width="0.6"/>
+      <circle cx="0" cy="0" r="120" stroke-width="0.4"/>
+      <circle cx="0" cy="0" r="80"  stroke-width="0.5" stroke-dasharray="1 2"/>
+      <path d="M0 80  Q12 70  0  60  Q-6 70 0 80"/>
+      <path d="M20 78 Q30 64 18 52 Q8 60 20 78" transform="rotate(15 0 0)"/>
+      <path d="M20 78 Q30 64 18 52 Q8 60 20 78" transform="rotate(30 0 0)"/>
+      <path d="M20 78 Q30 64 18 52 Q8 60 20 78" transform="rotate(45 0 0)"/>
+      <path d="M20 78 Q30 64 18 52 Q8 60 20 78" transform="rotate(60 0 0)"/>
+      <path d="M20 78 Q30 64 18 52 Q8 60 20 78" transform="rotate(75 0 0)"/>
+    </g>
+    <path d="M18 18 C 60 40, 80 90, 90 140 C 100 190, 150 220, 210 235"
+          stroke="url(#goldFoil)" stroke-width="1.2" fill="none" filter="url(#goldGlow)"/>
+    <path d="M18 18 C 70 55, 100 110, 110 170"
+          stroke="url(#goldFoilSoft)" stroke-width="0.5" fill="none" opacity="0.7"/>
+    <g fill="url(#goldFoil)" filter="url(#goldEmboss)">
+      <circle cx="40" cy="32" r="2.6"/>
+      <circle cx="58" cy="48" r="2.4"/>
+      <circle cx="74" cy="66" r="2.8"/>
+      <circle cx="86" cy="88" r="2.4"/>
+      <circle cx="92" cy="112" r="2.8"/>
+      <circle cx="96" cy="138" r="2.4"/>
+      <circle cx="102" cy="164" r="2.8"/>
+      <circle cx="118" cy="188" r="2.4"/>
+      <circle cx="148" cy="208" r="2.8"/>
+      <circle cx="178" cy="224" r="2.4"/>
+    </g>
+    <g transform="translate(30 30)" stroke="url(#goldFoil)" fill="none" stroke-width="0.9" filter="url(#goldGlow)">
+      <path d="M0 14 C -4 8 -10 6 -14 8 C -10 2 -4 0 0 -6 C 4 0 10 2 14 8 C 10 6 4 8 0 14Z"/>
+      <path d="M0 14 C -2 10 -6 8 -10 10" stroke-width="0.6"/>
+      <path d="M0 14 C 2 10 6 8 10 10"   stroke-width="0.6"/>
+      <path d="M0 14 L0 18" stroke-width="0.8"/>
+      <circle cx="0" cy="6" r="1.2" fill="url(#goldFoil)"/>
+    </g>
+    <g stroke="url(#goldFoilSoft)" fill="none" stroke-width="0.6" opacity="0.8">
+      <circle cx="140" cy="40" r="3"/>
+      <circle cx="140" cy="40" r="1" fill="url(#goldFoil)"/>
+      <path d="M134 40 Q140 34 146 40 Q140 46 134 40Z"/>
+      <circle cx="40" cy="140" r="3"/>
+      <circle cx="40" cy="140" r="1" fill="url(#goldFoil)"/>
+      <path d="M34 140 Q40 134 46 140 Q40 146 34 140Z"/>
+      <circle cx="200" cy="80" r="2.5"/>
+      <circle cx="80" cy="200" r="2.5"/>
+    </g>
+    <g fill="url(#goldFoil)" filter="url(#goldEmboss)">
+      <circle cx="130" cy="8"  r="1.8"/>
+      <circle cx="130" cy="18" r="1.8"/>
+      <circle cx="130" cy="28" r="1.8"/>
+      <circle cx="130" cy="38" r="1.8"/>
+      <circle cx="130" cy="48" r="2"/>
+    </g>
+  </svg>
+
+  <svg class="vc bl" viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="url(#goldFoil)" fill="none" filter="url(#goldGlow)">
+      <circle cx="0" cy="0" r="230" stroke-width="0.6"/>
+      <circle cx="0" cy="0" r="190" stroke-width="0.4" stroke-dasharray="1 2"/>
+      <circle cx="0" cy="0" r="150" stroke-width="0.6"/>
+      <circle cx="0" cy="0" r="110" stroke-width="0.4" stroke-dasharray="2 3"/>
+      <g transform="rotate(10 0 0)">
+        <path d="M0 0 Q22 60 48 90 Q38 120 12 118 Q6 80 0 0Z" stroke-width="0.7"/>
+        <circle cx="30" cy="98" r="6" stroke-width="0.6"/>
+        <circle cx="30" cy="98" r="2.5" fill="url(#goldFoil)"/>
+      </g>
+      <g transform="rotate(40 0 0)">
+        <path d="M0 0 Q22 60 48 90 Q38 120 12 118 Q6 80 0 0Z" stroke-width="0.7"/>
+        <circle cx="30" cy="98" r="6" stroke-width="0.6"/>
+        <circle cx="30" cy="98" r="2.5" fill="url(#goldFoil)"/>
+      </g>
+      <g transform="rotate(70 0 0)">
+        <path d="M0 0 Q22 60 48 90 Q38 120 12 118 Q6 80 0 0Z" stroke-width="0.7"/>
+        <circle cx="30" cy="98" r="6" stroke-width="0.6"/>
+        <circle cx="30" cy="98" r="2.5" fill="url(#goldFoil)"/>
+      </g>
+    </g>
+    <g transform="translate(45 45)" stroke="url(#goldFoil)" fill="none" stroke-width="0.8" filter="url(#goldGlow)">
+      <path d="M0 0 C -10 -14 -24 -18 -32 -14 C -24 -4 -10 0 0 14 C 10 0 24 -4 32 -14 C 24 -18 10 -14 0 0Z"/>
+      <path d="M0 0 C -6 -8 -14 -12 -20 -10" stroke-width="0.5"/>
+      <path d="M0 0 C 6 -8 14 -12 20 -10"   stroke-width="0.5"/>
+      <circle cx="0" cy="-6" r="1.8" fill="url(#goldFoil)"/>
+    </g>
+    <path d="M20 220 C 60 210 100 212 150 218 C 190 222 220 228 246 230"
+          stroke="url(#goldFoil)" stroke-width="1" fill="none" filter="url(#goldGlow)"/>
+    <g fill="url(#goldFoil)" filter="url(#goldEmboss)">
+      <circle cx="40"  cy="216" r="2.4"/>
+      <circle cx="70"  cy="213" r="2.6"/>
+      <circle cx="100" cy="213" r="2.4"/>
+      <circle cx="130" cy="216" r="2.6"/>
+      <circle cx="160" cy="220" r="2.4"/>
+      <circle cx="190" cy="224" r="2.6"/>
+      <circle cx="220" cy="228" r="2.4"/>
+    </g>
+    <g stroke="url(#goldFoilSoft)" fill="url(#goldFoil)" stroke-width="0.4">
+      <path d="M70 215 L68 226 L72 226 Z"/>
+      <path d="M130 218 L128 230 L132 230 Z"/>
+      <path d="M190 226 L188 238 L192 238 Z"/>
+    </g>
+  </svg>
+
+  <svg class="vc br" viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="url(#goldFoil)" fill="none" filter="url(#goldGlow)">
+      <circle cx="0" cy="0" r="230" stroke-width="0.6"/>
+      <circle cx="0" cy="0" r="190" stroke-width="0.4" stroke-dasharray="1 2"/>
+      <circle cx="0" cy="0" r="150" stroke-width="0.6"/>
+      <circle cx="0" cy="0" r="110" stroke-width="0.4" stroke-dasharray="2 3"/>
+      <g transform="rotate(10 0 0)">
+        <path d="M0 0 Q22 60 48 90 Q38 120 12 118 Q6 80 0 0Z" stroke-width="0.7"/>
+        <circle cx="30" cy="98" r="6" stroke-width="0.6"/>
+        <circle cx="30" cy="98" r="2.5" fill="url(#goldFoil)"/>
+      </g>
+      <g transform="rotate(40 0 0)">
+        <path d="M0 0 Q22 60 48 90 Q38 120 12 118 Q6 80 0 0Z" stroke-width="0.7"/>
+        <circle cx="30" cy="98" r="6" stroke-width="0.6"/>
+        <circle cx="30" cy="98" r="2.5" fill="url(#goldFoil)"/>
+      </g>
+      <g transform="rotate(70 0 0)">
+        <path d="M0 0 Q22 60 48 90 Q38 120 12 118 Q6 80 0 0Z" stroke-width="0.7"/>
+        <circle cx="30" cy="98" r="6" stroke-width="0.6"/>
+        <circle cx="30" cy="98" r="2.5" fill="url(#goldFoil)"/>
+      </g>
+    </g>
+    <g transform="translate(45 45)" stroke="url(#goldFoil)" fill="none" stroke-width="0.8" filter="url(#goldGlow)">
+      <path d="M0 0 C -10 -14 -24 -18 -32 -14 C -24 -4 -10 0 0 14 C 10 0 24 -4 32 -14 C 24 -18 10 -14 0 0Z"/>
+      <path d="M0 0 C -6 -8 -14 -12 -20 -10" stroke-width="0.5"/>
+      <path d="M0 0 C 6 -8 14 -12 20 -10"   stroke-width="0.5"/>
+      <circle cx="0" cy="-6" r="1.8" fill="url(#goldFoil)"/>
+    </g>
+    <path d="M20 220 C 60 210 100 212 150 218 C 190 222 220 228 246 230"
+          stroke="url(#goldFoil)" stroke-width="1" fill="none" filter="url(#goldGlow)"/>
+    <g fill="url(#goldFoil)" filter="url(#goldEmboss)">
+      <circle cx="40"  cy="216" r="2.4"/>
+      <circle cx="70"  cy="213" r="2.6"/>
+      <circle cx="100" cy="213" r="2.4"/>
+      <circle cx="130" cy="216" r="2.6"/>
+      <circle cx="160" cy="220" r="2.4"/>
+      <circle cx="190" cy="224" r="2.6"/>
+      <circle cx="220" cy="228" r="2.4"/>
+    </g>
+    <g stroke="url(#goldFoilSoft)" fill="url(#goldFoil)" stroke-width="0.4">
+      <path d="M70 215 L68 226 L72 226 Z"/>
+      <path d="M130 218 L128 230 L132 230 Z"/>
+      <path d="M190 226 L188 238 L192 238 Z"/>
+    </g>
+  </svg>
+</div>
+
+<section id="hero" class="light-section">
+
   <svg class="bg-mandala" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <g fill="none" stroke="#AF9500" stroke-width="0.6">
       <circle cx="250" cy="250" r="240"/>
@@ -884,82 +1331,55 @@
       <circle cx="250" cy="250" r="160"/>
       <circle cx="250" cy="250" r="120"/>
       <circle cx="250" cy="250" r="80"/>
-      <!-- petals -->
-      <ellipse cx="250" cy="50"  rx="18" ry="38" transform="rotate(0   250 250)"/>
-      <ellipse cx="250" cy="50"  rx="18" ry="38" transform="rotate(30  250 250)"/>
-      <ellipse cx="250" cy="50"  rx="18" ry="38" transform="rotate(60  250 250)"/>
-      <ellipse cx="250" cy="50"  rx="18" ry="38" transform="rotate(90  250 250)"/>
-      <ellipse cx="250" cy="50"  rx="18" ry="38" transform="rotate(120 250 250)"/>
-      <ellipse cx="250" cy="50"  rx="18" ry="38" transform="rotate(150 250 250)"/>
-      <ellipse cx="250" cy="50"  rx="18" ry="38" transform="rotate(180 250 250)"/>
-      <ellipse cx="250" cy="50"  rx="18" ry="38" transform="rotate(210 250 250)"/>
-      <ellipse cx="250" cy="50"  rx="18" ry="38" transform="rotate(240 250 250)"/>
-      <ellipse cx="250" cy="50"  rx="18" ry="38" transform="rotate(270 250 250)"/>
-      <ellipse cx="250" cy="50"  rx="18" ry="38" transform="rotate(300 250 250)"/>
-      <ellipse cx="250" cy="50"  rx="18" ry="38" transform="rotate(330 250 250)"/>
+      <ellipse cx="250" cy="50" rx="18" ry="38" transform="rotate(0   250 250)"/>
+      <ellipse cx="250" cy="50" rx="18" ry="38" transform="rotate(30  250 250)"/>
+      <ellipse cx="250" cy="50" rx="18" ry="38" transform="rotate(60  250 250)"/>
+      <ellipse cx="250" cy="50" rx="18" ry="38" transform="rotate(90  250 250)"/>
+      <ellipse cx="250" cy="50" rx="18" ry="38" transform="rotate(120 250 250)"/>
+      <ellipse cx="250" cy="50" rx="18" ry="38" transform="rotate(150 250 250)"/>
+      <ellipse cx="250" cy="50" rx="18" ry="38" transform="rotate(180 250 250)"/>
+      <ellipse cx="250" cy="50" rx="18" ry="38" transform="rotate(210 250 250)"/>
+      <ellipse cx="250" cy="50" rx="18" ry="38" transform="rotate(240 250 250)"/>
+      <ellipse cx="250" cy="50" rx="18" ry="38" transform="rotate(270 250 250)"/>
+      <ellipse cx="250" cy="50" rx="18" ry="38" transform="rotate(300 250 250)"/>
+      <ellipse cx="250" cy="50" rx="18" ry="38" transform="rotate(330 250 250)"/>
     </g>
   </svg>
 
-  <!-- Ganesh icon -->
-  <div class="hero-ganesh">
-    <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Simplified Ganesha silhouette -->
-      <path d="M36 8 C28 8 22 14 22 22 C18 22 14 26 14 30 C14 34 17 37 20 38 C18 42 18 50 22 54 C26 58 30 60 36 60 C42 60 46 58 50 54 C54 50 54 42 52 38 C55 37 58 34 58 30 C58 26 54 22 50 22 C50 14 44 8 36 8Z" stroke="#AF9500" stroke-width="1.2" fill="none"/>
-      <path d="M26 30 C24 28 20 28 18 30 C17 32 18 36 22 36" stroke="#AF9500" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-      <path d="M46 30 C48 28 52 28 54 30 C55 32 54 36 50 36" stroke="#AF9500" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-      <circle cx="30" cy="34" r="2.5" stroke="#AF9500" stroke-width="1" fill="none"/>
-      <circle cx="42" cy="34" r="2.5" stroke="#AF9500" stroke-width="1" fill="none"/>
-      <path d="M32 42 Q36 46 40 42" stroke="#AF9500" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-      <path d="M33 22 Q36 18 39 22" stroke="#AF9500" stroke-width="1" fill="none"/>
-      <line x1="36" y1="8" x2="36" y2="5" stroke="#AF9500" stroke-width="1"/>
-      <line x1="36" y1="5" x2="32" y2="2" stroke="#AF9500" stroke-width="1"/>
-      <path d="M28 52 Q24 58 22 62" stroke="#AF9500" stroke-width="1" fill="none" stroke-linecap="round"/>
-      <path d="M44 52 Q48 58 50 62" stroke="#AF9500" stroke-width="1" fill="none" stroke-linecap="round"/>
-    </svg>
-  </div>
+<div class="hero-ganesh">
+    <img src="ganesh-icon.png" alt="Ganesh" style="width: 100%; height: auto; display: block;">
+</div>
 
-  <!-- Hosts -->
   <p class="hero-hosts">
-    Mrs. Sudha Krishnadas &amp; Mr. Krishnadas A.J<br>
+    Mrs. Sudha Krishnadas & Mr. Krishnadas A.J<br>
     <em>Ambalaparambil House, Perumbavoor</em>
   </p>
 
-  <!-- Invite text -->
   <p class="hero-invite-text">
-    cordially invite your esteemed presence &amp; blessings with family<br>
+    cordially invite your esteemed presence & blessings with family<br>
     on the auspicious occasion of the wedding of their daughter
   </p>
 
-  <!-- Bride name -->
   <h1 class="hero-bride-name">Lakshmi Das</h1>
 
-  <!-- With -->
   <p class="hero-with">with</p>
 
-  <!-- Groom name -->
   <h1 class="hero-groom-name">Abhilash Vijayan</h1>
 
-  <!-- Date Badge -->
   <div class="hero-date-badge">
     <span class="day">Wednesday</span>
     <span class="date-num">13</span>
     <span class="month-year">May · 2026</span>
   </div>
 
-  <!-- Scroll cue -->
   <div class="scroll-cue" id="scroll-cue">
     <span>Scroll</span>
     <div class="scroll-line"></div>
   </div>
-
 </section>
 
-<!-- =============================================
-     SECTION 2 — PARENTS / BLESSINGS
-============================================= -->
-<section id="blessings">
+<section id="blessings" class="light-section">
 
-  <!-- Corner ornaments -->
   <svg class="ornament-corner tl" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <path d="M10 10 L10 60 Q10 80 30 90 L80 90" stroke="#AF9500" stroke-width="1" fill="none"/>
     <path d="M10 10 L60 10 Q80 10 90 30 L90 80" stroke="#AF9500" stroke-width="0.5" fill="none"/>
@@ -985,17 +1405,14 @@
 
   <span class="section-eyebrow reveal-item">With the blessings of</span>
 
-  <!-- Bride's family -->
   <div class="bless-family-block reveal-item" style="margin-bottom:0">
     <p class="family-title">Bride's Parents</p>
-    <p class="family-name">Mrs. Sudha Krishnadas &amp; Mr. Krishnadas A.J</p>
+    <p class="family-name">Mrs. Sudha Krishnadas & Mr. Krishnadas A.J</p>
     <p class="family-place">Ambalaparambil House, Perumbavoor</p>
   </div>
 
-  <!-- Ornament divider -->
   <div class="blessings-connector reveal-item">
     <div class="line"></div>
-    <!-- Mini lotus SVG -->
     <svg width="48" height="32" viewBox="0 0 48 32" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M24 28 C20 20 12 18 8 20 C12 14 20 12 24 4 C28 12 36 14 40 20 C36 18 28 20 24 28Z" stroke="#AF9500" stroke-width="1" fill="none"/>
       <path d="M24 28 C22 22 16 20 12 22" stroke="#AF9500" stroke-width="0.7" fill="none"/>
@@ -1005,89 +1422,90 @@
     <div class="line r"></div>
   </div>
 
-  <!-- Groom's family -->
   <div class="bless-family-block reveal-item">
     <p class="family-title">Groom's Parents</p>
-    <p class="family-name">Mrs. Ambika Vijayan &amp; Mr. Vijayan K.R</p>
+    <p class="family-name">Mrs. Ambika Vijayan & Mr. Vijayan K.R</p>
     <p class="family-place">Kanakkancheril House, Piravom</p>
   </div>
 
 </section>
 
-<!-- =============================================
-     SECTION 3 — THE COUPLE
-============================================= -->
-<section id="couple">
+<section id="couple" class="light-section">
 
   <p class="couple-section-title reveal-item">The Couple</p>
 
   <div class="couple-gallery">
 
-    <!-- ── BRIDE ── -->
-    <!-- SWAP: Replace src below with Lakshmi's actual photo URL -->
     <div class="person-card reveal-item">
       <div class="photo-mask-wrapper">
         <div class="photo-clip" id="bride-clip">
-          <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=600&q=80"
-               alt="Lakshmi Das — Bride"
-               loading="lazy"
-               id="bride-img">
-          <!-- ↑ REPLACE src above with your bride.jpg URL -->
+          <img
+            src="bride.jpeg"
+            srcset="bride.jpeg?w=800&q=85 800w,
+                    bride.jpeg?w=1200&q=90 1200w,
+                    bride.jpeg?w=1800&q=90 1800w"
+            sizes="(max-width: 767px) 90vw, 420px"
+            alt="Lakshmi Das — Bride"
+            loading="eager"
+            id="bride-img">
         </div>
         <div class="photo-frame-border" id="bride-frame"></div>
         <div class="photo-frame-corner tl">
-          <svg viewBox="0 0 24 24"><path d="M2 2 L2 12 M2 2 L12 2" stroke="#AF9500" stroke-width="1.5" fill="none"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M2 2 L2 14 M2 2 L14 2 M4 4 L4 10 M4 4 L10 4" stroke="#AF9500" stroke-width="1.4" fill="none"/></svg>
         </div>
         <div class="photo-frame-corner tr">
-          <svg viewBox="0 0 24 24"><path d="M2 2 L2 12 M2 2 L12 2" stroke="#AF9500" stroke-width="1.5" fill="none"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M2 2 L2 14 M2 2 L14 2 M4 4 L4 10 M4 4 L10 4" stroke="#AF9500" stroke-width="1.4" fill="none"/></svg>
         </div>
         <div class="photo-frame-corner bl">
-          <svg viewBox="0 0 24 24"><path d="M2 2 L2 12 M2 2 L12 2" stroke="#AF9500" stroke-width="1.5" fill="none"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M2 2 L2 14 M2 2 L14 2 M4 4 L4 10 M4 4 L10 4" stroke="#AF9500" stroke-width="1.4" fill="none"/></svg>
         </div>
         <div class="photo-frame-corner br">
-          <svg viewBox="0 0 24 24"><path d="M2 2 L2 12 M2 2 L12 2" stroke="#AF9500" stroke-width="1.5" fill="none"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M2 2 L2 14 M2 2 L14 2 M4 4 L4 10 M4 4 L10 4" stroke="#AF9500" stroke-width="1.4" fill="none"/></svg>
         </div>
       </div>
       <h2 class="person-name-script">Lakshmi Das</h2>
       <p class="person-role">The Bride</p>
       <p class="person-parents">
-        D/o. Mrs. Sudha Krishnadas &amp; Mr. Krishnadas A.J<br>
+        D/o. Mrs. Sudha Krishnadas & Mr. Krishnadas A.J<br>
         <em>Ambalaparambil House, Perumbavoor</em>
       </p>
     </div>
+    
+    <div class="couple-ampersand" id="couple-amp">
+    <img src="hh.png" alt="Decorative Icon" style="width: 180px; height: 180px; object-fit: contain; filter: drop-shadow(0 2px 10px rgba(175,149,0,0.2));">
+    </div>
 
-    <!-- Ampersand between on desktop -->
-    <div class="couple-ampersand" id="couple-amp">&amp;</div>
-
-    <!-- ── GROOM ── -->
-    <!-- SWAP: Replace src below with Abhilash's actual photo URL -->
     <div class="person-card reveal-item">
       <div class="photo-mask-wrapper">
         <div class="photo-clip" id="groom-clip">
-          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80"
-               alt="Abhilash Vijayan — Groom"
-               loading="lazy"
-               id="groom-img">
-          <!-- ↑ REPLACE src above with your groom.jpg URL -->
+          <img
+            src="groom.jpeg"
+            srcset="groom.jpeg?w=800&q=85 800w,
+                    groom.jpeg?w=1200&q=90 1200w,
+                    groom.jpeg?w=1800&q=90 1800w"
+            sizes="(max-width: 767px) 90vw, 420px"
+            alt="Abhilash Vijayan — Groom"
+            loading="eager"
+            id="groom-img">
         </div>
         <div class="photo-frame-border" id="groom-frame"></div>
         <div class="photo-frame-corner tl">
-          <svg viewBox="0 0 24 24"><path d="M2 2 L2 12 M2 2 L12 2" stroke="#AF9500" stroke-width="1.5" fill="none"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M2 2 L2 14 M2 2 L14 2 M4 4 L4 10 M4 4 L10 4" stroke="#AF9500" stroke-width="1.4" fill="none"/></svg>
         </div>
         <div class="photo-frame-corner tr">
-          <svg viewBox="0 0 24 24"><path d="M2 2 L2 12 M2 2 L12 2" stroke="#AF9500" stroke-width="1.5" fill="none"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M2 2 L2 14 M2 2 L14 2 M4 4 L4 10 M4 4 L10 4" stroke="#AF9500" stroke-width="1.4" fill="none"/></svg>
         </div>
         <div class="photo-frame-corner bl">
-          <svg viewBox="0 0 24 24"><path d="M2 2 L2 12 M2 2 L12 2" stroke="#AF9500" stroke-width="1.5" fill="none"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M2 2 L2 14 M2 2 L14 2 M4 4 L4 10 M4 4 L10 4" stroke="#AF9500" stroke-width="1.4" fill="none"/></svg>
         </div>
         <div class="photo-frame-corner br">
-          <svg viewBox="0 0 24 24"><path d="M2 2 L2 12 M2 2 L12 2" stroke="#AF9500" stroke-width="1.5" fill="none"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M2 2 L2 14 M2 2 L14 2 M4 4 L4 10 M4 4 L10 4" stroke="#AF9500" stroke-width="1.4" fill="none"/></svg>
         </div>
       </div>
       <h2 class="person-name-script">Abhilash Vijayan</h2>
       <p class="person-role">The Groom</p>
       <p class="person-parents">
-        S/o. Mrs. Ambika Vijayan &amp; Mr. Vijayan K.R<br>
+        S/o. Mrs. Ambika Vijayan & Mr. Vijayan K.R<br>
         <em>Kanakkancheril House, Piravom</em>
       </p>
     </div>
@@ -1095,18 +1513,22 @@
   </div>
 </section>
 
-<!-- =============================================
-     SECTION 4 — STORY / NARRATIVE (Dark)
-============================================= -->
-<section id="story">
+<section id="story" class="dark-section">
 
-  <!-- Decorative bg -->
   <svg class="story-bg-ornament" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <g fill="none" stroke="#AF9500" stroke-width="0.5">
+    <g fill="none" stroke="#E8D88A" stroke-width="0.5">
       <circle cx="250" cy="250" r="240"/>
       <circle cx="250" cy="250" r="180"/>
       <circle cx="250" cy="250" r="120"/>
       <circle cx="250" cy="250" r="60"/>
+      <g transform="translate(250 250)">
+        <ellipse cx="0" cy="-200" rx="18" ry="38"/>
+        <ellipse cx="0" cy="-200" rx="18" ry="38" transform="rotate(30)"/>
+        <ellipse cx="0" cy="-200" rx="18" ry="38" transform="rotate(60)"/>
+        <ellipse cx="0" cy="-200" rx="18" ry="38" transform="rotate(90)"/>
+        <ellipse cx="0" cy="-200" rx="18" ry="38" transform="rotate(120)"/>
+        <ellipse cx="0" cy="-200" rx="18" ry="38" transform="rotate(150)"/>
+      </g>
     </g>
   </svg>
 
@@ -1120,18 +1542,36 @@
     <span class="story-line">the sacred bond of marriage.</span>
   </div>
 
+  <div class="ganesh-wrap">
+    <!-- Nilavilakku (Kerala brass lamp) -->
+    <svg class="lamp-svg" viewBox="0 0 110 170" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- flame glow -->
+      <ellipse class="flame-glow" cx="55" cy="20" rx="22" ry="30" fill="url(#flame-grad)"></ellipse>
+      <!-- flame -->
+      <path class="flame" d="M55 8 Q 62 22 58 36 Q 54 30 55 22 Q 52 30 50 36 Q 48 22 55 8 Z" fill="#F6B32C"></path>
+      <path class="flame" d="M55 14 Q 60 24 58 34 Q 54 28 55 22 Q 54 28 52 34 Q 52 24 55 14 Z" fill="#FFF3A0" opacity=".85"></path>
+      <!-- wick cup -->
+      <path d="M30 42 Q 55 34 80 42 Q 82 52 76 56 Q 55 62 34 56 Q 28 52 30 42 Z" fill="url(#brass-grad)" stroke="#6F4A14" stroke-width=".6"></path>
+      <!-- stem sections -->
+      <rect x="50" y="58" width="10" height="14" fill="url(#brass-grad)" stroke="#6F4A14" stroke-width=".6"></rect>
+      <ellipse cx="55" cy="76" rx="14" ry="4" fill="url(#brass-grad)" stroke="#6F4A14" stroke-width=".6"></ellipse>
+      <rect x="51" y="80" width="8" height="14" fill="url(#brass-grad)" stroke="#6F4A14" stroke-width=".6"></rect>
+      <ellipse cx="55" cy="98" rx="18" ry="5" fill="url(#brass-grad)" stroke="#6F4A14" stroke-width=".6"></ellipse>
+      <rect x="50" y="103" width="10" height="18" fill="url(#brass-grad)" stroke="#6F4A14" stroke-width=".6"></rect>
+      <ellipse cx="55" cy="124" rx="24" ry="6" fill="url(#brass-grad)" stroke="#6F4A14" stroke-width=".6"></ellipse>
+      <!-- base pedestal -->
+      <path d="M25 128 Q 55 122 85 128 L 90 145 Q 55 152 20 145 Z" fill="url(#brass-grad)" stroke="#6F4A14" stroke-width=".6"></path>
+      <ellipse cx="55" cy="150" rx="38" ry="6" fill="url(#brass-grad)" stroke="#6F4A14" stroke-width=".6"></ellipse>
+    </svg>
+  </div>
 </section>
 
-<!-- =============================================
-     SECTION 5 — DETAILS
-============================================= -->
-<section id="details">
+<section id="details" class="light-section">
 
   <div class="details-inner">
 
     <h2 class="details-title">The Celebration</h2>
 
-    <!-- Date & Venue row -->
     <div class="detail-row">
       <div class="detail-item" id="detail-date">
         <svg class="detail-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1156,7 +1596,6 @@
         <p class="detail-eyebrow">Venue</p>
         <p class="detail-main">Seema Auditorium</p>
         <p class="detail-sub">Perumbavoor, Kerala</p>
-        <!-- SWAP: Replace # with your Google Maps link for Seema Auditorium -->
         <a href="https://www.google.com/maps/search/Seema+Auditorium+Perumbavoor" target="_blank" rel="noopener" class="maps-link" id="maps-link">
           <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M7 1 C4.2 1 2 3.2 2 6 C2 9.5 7 14 7 14 C7 14 12 9.5 12 6 C12 3.2 9.8 1 7 1Z" stroke="currentColor" stroke-width="1.2" fill="none"/>
@@ -1167,13 +1606,11 @@
       </div>
     </div>
 
-    <!-- Muhurtham block -->
     <div class="muhurtham-block" id="muhurtham">
       <p class="muhurtham-time">11.00 am — 11.45 am</p>
       <p class="muhurtham-detail">Auspicious time for the ceremony</p>
     </div>
 
-    <!-- Ornament divider -->
     <svg class="ornament-divider reveal-item" viewBox="0 0 500 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin:16px auto 0" aria-hidden="true">
       <line x1="0" y1="20" x2="200" y2="20" stroke="#E8D88A" stroke-width="0.8"/>
       <path d="M220 20 C225 10 235 5 250 5 C265 5 275 10 280 20 C275 30 265 35 250 35 C235 35 225 30 220 20Z" stroke="#AF9500" stroke-width="1" fill="none"/>
@@ -1183,32 +1620,26 @@
       <line x1="300" y1="20" x2="500" y2="20" stroke="#E8D88A" stroke-width="0.8"/>
     </svg>
 
-    <!-- Sharing the happiness -->
     <div class="sharing-block" id="sharing-block">
       <p class="sharing-title">Sharing the happiness</p>
-      <p class="sharing-name">Anand Krishnan &amp; Aathira Anand</p>
+      <p class="sharing-name">Anand Krishnan & Aathira Anand</p>
       <p class="sharing-phones">
         <a href="tel:9961480413">9961480413</a>
-        &nbsp;·&nbsp;
+         · 
         <a href="tel:7736186713">7736186713</a>
       </p>
     </div>
-
   </div>
 </section>
 
-<!-- =============================================
-     SECTION 6 — RSVP / CLOSE
-============================================= -->
-<section id="rsvp">
+<section id="rsvp" class="dark-section">
   <div class="rsvp-bg"></div>
 
-  <!-- Corner ornaments (light) -->
-  <svg style="position:absolute;top:0;left:0;width:100px;height:100px;opacity:0.2" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+  <svg style="position:absolute;top:0;left:0;width:clamp(80px,12vw,120px);height:clamp(80px,12vw,120px);opacity:0.2" viewBox="0 0 120 120" fill="none" aria-hidden="true">
     <path d="M10 10 L10 60 Q10 80 30 90 L80 90" stroke="#E8D88A" stroke-width="1.2" fill="none"/>
     <path d="M10 10 L60 10 Q80 10 90 30 L90 80" stroke="#E8D88A" stroke-width="0.6" fill="none"/>
   </svg>
-  <svg style="position:absolute;top:0;right:0;width:100px;height:100px;opacity:0.2;transform:scaleX(-1)" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+  <svg style="position:absolute;top:0;right:0;width:clamp(80px,12vw,120px);height:clamp(80px,12vw,120px);opacity:0.2;transform:scaleX(-1)" viewBox="0 0 120 120" fill="none" aria-hidden="true">
     <path d="M10 10 L10 60 Q10 80 30 90 L80 90" stroke="#E8D88A" stroke-width="1.2" fill="none"/>
     <path d="M10 10 L60 10 Q80 10 90 30 L90 80" stroke="#E8D88A" stroke-width="0.6" fill="none"/>
   </svg>
@@ -1220,8 +1651,6 @@
       Your presence and blessings mean everything to us.
     </p>
 
-    <!-- SWAP: Replace the href below with your WhatsApp link or Google Form URL -->
-    <!-- WhatsApp: https://wa.me/919961480413?text=I%20will%20attend%20the%20wedding -->
     <a href="https://wa.me/919961480413?text=Congratulations!%20I%20will%20be%20attending%20the%20wedding%20of%20Lakshmi%20%26%20Abhilash%20on%2013th%20May."
        target="_blank"
        rel="noopener"
@@ -1240,29 +1669,42 @@
   </div>
 </section>
 
-<!-- =============================================
-     FOOTER
-============================================= -->
 <footer>
-  <p>Lakshmi &amp; Abhilash · 13 May 2026 · Seema Auditorium, Perumbavoor</p>
+  <p>Lakshmi & Abhilash · 13 May 2026 · Seema Auditorium, Perumbavoor</p>
 </footer>
 
-
-<!-- =============================================
-     SCRIPTS — GSAP + ScrollTrigger
-============================================= -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
 <script>
-// =============================================
-// GSAP REGISTRATION
-// =============================================
 gsap.registerPlugin(ScrollTrigger);
 
-// =============================================
-// LOADING SCREEN
-// =============================================
+/* -----------------------------------------------------------------
+   Detect small screens.
+----------------------------------------------------------------- */
+const IS_MOBILE = window.matchMedia('(max-width: 640px)').matches;
+
+/* -----------------------------------------------------------------
+   Falling Leaves Initialization (NEW ADDITION)
+----------------------------------------------------------------- */
+function createLeaves() {
+  const container = document.getElementById('leaves-container');
+  if(!container) return;
+  const leafCount = 15;
+  for (let i = 0; i < leafCount; i++) {
+    const leaf = document.createElement('div');
+    leaf.classList.add('leaf');
+    leaf.style.left = `${Math.random() * 100}vw`;
+    leaf.style.animationDuration = `${8 + Math.random() * 8}s`;
+    leaf.style.animationDelay = `${Math.random() * 5}s`;
+    container.appendChild(leaf);
+  }
+}
+window.addEventListener('DOMContentLoaded', createLeaves);
+
+/* -----------------------------------------------------------------
+   Loading Screen
+----------------------------------------------------------------- */
 window.addEventListener('load', () => {
   const tl = gsap.timeline({
     onComplete: () => {
@@ -1278,12 +1720,12 @@ window.addEventListener('load', () => {
   });
 });
 
-// =============================================
-// MAIN ANIMATION INIT
-// =============================================
+/* -----------------------------------------------------------------
+   Main animation init
+----------------------------------------------------------------- */
 function initAnimations() {
 
-  // ── HERO SEQUENCE ──
+  /* ── HERO SEQUENCE ── */
   const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
   heroTl
     .to('.hero-ganesh',      { opacity: 1, y: 0, duration: 1, from: { y: 30 } })
@@ -1295,7 +1737,84 @@ function initAnimations() {
     .to('.hero-date-badge',  { opacity: 1, y: 0, duration: 1, from: { y: 20 } }, '-=0.4')
     .to('#scroll-cue',       { opacity: 1, duration: 0.8 });
 
-  // ── BLESSINGS SECTION ──
+  /* ── CORNER GARLANDS FADE IN ── */
+  gsap.to('.vc', {
+    opacity: IS_MOBILE ? 0.55 : 0.85,
+    duration: 2.2,
+    delay: 0.6,
+    ease: 'power2.out',
+    stagger: 0.15
+  });
+
+  /* ── CORNER PARALLAX ── */
+  if (!IS_MOBILE) {
+    gsap.to('.vc.tl', {
+      y: -30, x: -10, ease: 'none',
+      scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 1.5 }
+    });
+    gsap.to('.vc.tr', {
+      y: -30, x: 10, ease: 'none',
+      scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 1.5 }
+    });
+    gsap.to('.vc.bl', {
+      y: 30, x: -10, ease: 'none',
+      scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 1.5 }
+    });
+    gsap.to('.vc.br', {
+      y: 30, x: 10, ease: 'none',
+      scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 1.5 }
+    });
+  }
+
+  /* ── ATMOSPHERIC BACKGROUND CROSSFADE ── */
+  const atmoMap = [
+    { section: '#hero',       layer: '#atmo-pookalam',     peak: IS_MOBILE ? 0.10 : 0.28 },
+    { section: '#blessings',  layer: '#atmo-hands',        peak: IS_MOBILE ? 0.12 : 0.30 },
+    { section: '#couple',     layer: '#atmo-couple-hands', peak: IS_MOBILE ? 0.10 : 0.25 },
+    { section: '#details',    layer: '#atmo-mangalsutra',  peak: IS_MOBILE ? 0.10 : 0.28 },
+    { section: '#rsvp',       layer: '#atmo-saree',        peak: IS_MOBILE ? 0.10 : 0.22 }
+  ];
+
+  atmoMap.forEach(({ section, layer, peak }) => {
+    gsap.fromTo(layer,
+      { opacity: 0 },
+      {
+        opacity: peak,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top bottom',
+          end:   'top center',
+          scrub: 1
+        }
+      }
+    );
+    gsap.to(layer, {
+      opacity: 0,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: section,
+        start: 'bottom center',
+        end:   'bottom top',
+        scrub: 1
+      }
+    });
+    gsap.fromTo(layer,
+      { scale: 1.04 },
+      {
+        scale: 1.12,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top bottom',
+          end:   'bottom top',
+          scrub: 2
+        }
+      }
+    );
+  });
+
+  /* ── BLESSINGS SECTION ── */
   gsap.utils.toArray('#blessings .reveal-item').forEach((el, i) => {
     gsap.fromTo(el,
       { opacity: 0, y: 30 },
@@ -1314,50 +1833,35 @@ function initAnimations() {
     );
   });
 
-  // ── COUPLE SECTION — PHOTO MASK REVEAL ──
-  // Bride clip-path reveal
+  /* ── COUPLE SECTION ── */
   gsap.fromTo('#bride-clip',
     { clipPath: 'inset(50% 50% 50% 50%)' },
     {
       clipPath: 'inset(0% 0% 0% 0%)',
       duration: 1.5,
       ease: 'power2.inOut',
-      scrollTrigger: {
-        trigger: '#bride-clip',
-        start: 'top 75%',
-        toggleActions: 'play none none none'
-      }
+      scrollTrigger: { trigger: '#bride-clip', start: 'top 75%', toggleActions: 'play none none none' }
     }
   );
-  // Bride image subtle zoom-out
   gsap.fromTo('#bride-img',
-    { scale: 1.12 },
+    { scale: 1.18 },
     {
       scale: 1,
       duration: 1.8,
       ease: 'power2.out',
-      scrollTrigger: {
-        trigger: '#bride-clip',
-        start: 'top 75%',
-        toggleActions: 'play none none none'
-      }
+      scrollTrigger: { trigger: '#bride-clip', start: 'top 75%', toggleActions: 'play none none none' }
     }
   );
-  // Bride frame
+  gsap.to('#bride-img', {
+    scale: 1.06,
+    ease: 'none',
+    scrollTrigger: { trigger: '#bride-clip', start: 'top center', end: 'bottom top', scrub: 2 }
+  });
   gsap.to('#bride-frame', {
-    opacity: 1,
-    scale: 1,
-    duration: 1,
-    delay: 0.8,
-    ease: 'power2.out',
-    scrollTrigger: {
-      trigger: '#bride-clip',
-      start: 'top 75%',
-      toggleActions: 'play none none none'
-    }
+    opacity: 1, scale: 1, duration: 1, delay: 0.8, ease: 'power2.out',
+    scrollTrigger: { trigger: '#bride-clip', start: 'top 75%', toggleActions: 'play none none none' }
   });
 
-  // Groom clip-path reveal (staggered)
   gsap.fromTo('#groom-clip',
     { clipPath: 'inset(50% 50% 50% 50%)' },
     {
@@ -1365,80 +1869,50 @@ function initAnimations() {
       duration: 1.5,
       ease: 'power2.inOut',
       delay: 0.3,
-      scrollTrigger: {
-        trigger: '#groom-clip',
-        start: 'top 75%',
-        toggleActions: 'play none none none'
-      }
+      scrollTrigger: { trigger: '#groom-clip', start: 'top 75%', toggleActions: 'play none none none' }
     }
   );
   gsap.fromTo('#groom-img',
-    { scale: 1.12 },
+    { scale: 1.18 },
     {
       scale: 1,
       duration: 1.8,
       ease: 'power2.out',
       delay: 0.3,
-      scrollTrigger: {
-        trigger: '#groom-clip',
-        start: 'top 75%',
-        toggleActions: 'play none none none'
-      }
+      scrollTrigger: { trigger: '#groom-clip', start: 'top 75%', toggleActions: 'play none none none' }
     }
   );
+  gsap.to('#groom-img', {
+    scale: 1.06,
+    ease: 'none',
+    scrollTrigger: { trigger: '#groom-clip', start: 'top center', end: 'bottom top', scrub: 2 }
+  });
   gsap.to('#groom-frame', {
-    opacity: 1,
-    scale: 1,
-    duration: 1,
-    delay: 1.1,
-    ease: 'power2.out',
-    scrollTrigger: {
-      trigger: '#groom-clip',
-      start: 'top 75%',
-      toggleActions: 'play none none none'
-    }
+    opacity: 1, scale: 1, duration: 1, delay: 1.1, ease: 'power2.out',
+    scrollTrigger: { trigger: '#groom-clip', start: 'top 75%', toggleActions: 'play none none none' }
   });
 
-  // Ampersand float
   gsap.to('#couple-amp', {
-    opacity: 0.9,
-    duration: 1,
-    ease: 'power2.out',
-    scrollTrigger: {
-      trigger: '#couple',
-      start: 'top 60%',
-      toggleActions: 'play none none none'
-    }
+    opacity: 0.9, duration: 1, ease: 'power2.out',
+    scrollTrigger: { trigger: '#couple', start: 'top 60%', toggleActions: 'play none none none' }
   });
 
-  // Person cards info drift up
   gsap.utils.toArray('#couple .reveal-item').forEach((el, i) => {
     gsap.fromTo(el,
       { opacity: 0, y: 40 },
       {
-        opacity: 1,
-        y: 0,
-        duration: 1.4,
-        ease: 'power3.out',
-        delay: i * 0.2,
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 80%',
-          toggleActions: 'play none none none'
-        }
+        opacity: 1, y: 0, duration: 1.4, ease: 'power3.out', delay: i * 0.2,
+        scrollTrigger: { trigger: el, start: 'top 80%', toggleActions: 'play none none none' }
       }
     );
   });
 
-  // ── STORY SECTION — Line-by-line stagger ──
+  /* ── STORY SECTION ── */
   gsap.utils.toArray('#story .story-line').forEach((line, i) => {
     gsap.fromTo(line,
       { opacity: 0, y: 30 },
       {
-        opacity: 1,
-        y: 0,
-        duration: 1.4,
-        ease: 'power3.out',
+        opacity: 1, y: 0, duration: 1.4, ease: 'power3.out',
         scrollTrigger: {
           trigger: line,
           start: 'top 88%',
@@ -1450,19 +1924,12 @@ function initAnimations() {
     );
   });
 
-  // Parallax on story bg ornament
   gsap.to('#story .story-bg-ornament', {
-    y: -80,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '#story',
-      start: 'top bottom',
-      end: 'bottom top',
-      scrub: 2
-    }
+    y: -80, rotation: 15, ease: 'none',
+    scrollTrigger: { trigger: '#story', start: 'top bottom', end: 'bottom top', scrub: 2 }
   });
 
-  // ── DETAILS SECTION ──
+  /* ── DETAILS SECTION ── */
   gsap.fromTo('.details-title',
     { opacity: 0, y: 30 },
     {
@@ -1470,7 +1937,6 @@ function initAnimations() {
       scrollTrigger: { trigger: '.details-title', start: 'top 85%', toggleActions: 'play none none none' }
     }
   );
-
   gsap.fromTo('#detail-date',
     { opacity: 0, x: -30 },
     {
@@ -1478,7 +1944,6 @@ function initAnimations() {
       scrollTrigger: { trigger: '#detail-date', start: 'top 82%', toggleActions: 'play none none none' }
     }
   );
-
   gsap.fromTo('#detail-venue',
     { opacity: 0, x: 30 },
     {
@@ -1486,7 +1951,6 @@ function initAnimations() {
       scrollTrigger: { trigger: '#detail-venue', start: 'top 82%', toggleActions: 'play none none none' }
     }
   );
-
   gsap.fromTo('#muhurtham',
     { opacity: 0, y: 20, scale: 0.96 },
     {
@@ -1494,7 +1958,6 @@ function initAnimations() {
       scrollTrigger: { trigger: '#muhurtham', start: 'top 85%', toggleActions: 'play none none none' }
     }
   );
-
   gsap.fromTo('#maps-link',
     { opacity: 0, y: 10 },
     {
@@ -1502,7 +1965,6 @@ function initAnimations() {
       scrollTrigger: { trigger: '#maps-link', start: 'top 88%', toggleActions: 'play none none none' }
     }
   );
-
   gsap.fromTo('#sharing-block',
     { opacity: 0, y: 20 },
     {
@@ -1511,13 +1973,9 @@ function initAnimations() {
     }
   );
 
-  // ── RSVP SECTION ──
+  /* ── RSVP SECTION ── */
   const rsvpTl = gsap.timeline({
-    scrollTrigger: {
-      trigger: '#rsvp',
-      start: 'top 70%',
-      toggleActions: 'play none none none'
-    }
+    scrollTrigger: { trigger: '#rsvp', start: 'top 70%', toggleActions: 'play none none none' }
   });
   rsvpTl
     .to('#rsvp-title',    { opacity: 1, y: 0, duration: 1.2, from: { y: 40 }, ease: 'power3.out' })
@@ -1525,49 +1983,31 @@ function initAnimations() {
     .to('#whatsapp-btn',  { opacity: 1, y: 0, duration: 1,   from: { y: 20 }, ease: 'power3.out' }, '-=0.4')
     .to('#rsvp-blessing', { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.2');
 
-  // Parallax hero mandala on scroll
+  /* ── Hero mandala parallax ── */
   gsap.to('#hero .bg-mandala', {
-    y: 120,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '#hero',
-      start: 'top top',
-      end: 'bottom top',
-      scrub: 2
-    }
+    y: 120, ease: 'none',
+    scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 2 }
   });
 
-  // Scroll cue fade out on scroll
+  /* ── Scroll cue fade ── */
   gsap.to('#scroll-cue', {
-    opacity: 0,
-    y: -20,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '#hero',
-      start: 'top top',
-      end: '15% top',
-      scrub: 1
-    }
+    opacity: 0, y: -20, ease: 'none',
+    scrollTrigger: { trigger: '#hero', start: 'top top', end: '15% top', scrub: 1 }
   });
 
-  // Ornament corners draw in for blessings section
+  /* ── Blessings corner ornaments ── */
   gsap.utils.toArray('#blessings .ornament-corner').forEach((c, i) => {
     gsap.fromTo(c,
       { opacity: 0, scale: 0.7 },
       {
-        opacity: 0.35,
-        scale: 1,
-        duration: 1.5,
-        ease: 'power2.out',
-        delay: i * 0.1,
-        scrollTrigger: {
-          trigger: '#blessings',
-          start: 'top 80%',
-          toggleActions: 'play none none none'
-        }
+        opacity: 0.35, scale: 1, duration: 1.5, ease: 'power2.out', delay: i * 0.1,
+        scrollTrigger: { trigger: '#blessings', start: 'top 80%', toggleActions: 'play none none none' }
       }
     );
   });
+
+  /* ── Refresh after all set-up to catch layout shifts ── */
+  ScrollTrigger.refresh();
 }
 </script>
 
